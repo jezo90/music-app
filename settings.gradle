@@ -1,0 +1,6 @@
+rootProject.name = 'music-project'
+include 'music-library'
+include 'music-api'
+include 'music-api'
+include 'music-api'
+
