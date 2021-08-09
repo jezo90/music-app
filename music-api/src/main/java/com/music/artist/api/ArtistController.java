@@ -2,6 +2,7 @@ package com.music.artist.api;
 
 
 import com.music.artist.mapper.ArtistMapper;
+import com.music.artist.model.ArtistRequest;
 import com.music.artist.model.ArtistResponse;
 import com.music.artist.port.inbound.ArtistComponent;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/artists")
+@RequestMapping("/artist")
 class ArtistController {
 
     private final ArtistComponent artistComponent;
@@ -23,25 +24,34 @@ class ArtistController {
         return ResponseEntity
                 .ok(ArtistMapper
                         .map(artistComponent
-                        .getAllArtists()));
+                        .getAll()));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ArtistResponse> getArtist(@PathVariable Long id)
+    ResponseEntity<ArtistResponse> get(@PathVariable Long id)
     {
         return ResponseEntity.ok(
                 ArtistMapper
                 .map(artistComponent
-                        .getArtist(id)));
+                        .get(id)));
     }
 
-    @PostMapping
-    ResponseEntity<ArtistResponse> addArtist(@RequestBody ArtistResponse artistResponse)
+    @PostMapping("/add")
+    ResponseEntity<ArtistResponse> add(@RequestBody ArtistRequest artistRequest)
     {
         return ResponseEntity.ok(
                 ArtistMapper.map(
-                        artistComponent.addArtist(
-                                ArtistMapper.map(artistResponse))));
+                        artistComponent.add(
+                                ArtistMapper.map(artistRequest))));
+    }
+
+    @PostMapping("/addMultiple")
+    ResponseEntity<List<ArtistResponse>> addMultiple(@RequestBody List<ArtistRequest> artistRequestList)
+    {
+        return ResponseEntity.ok(
+                ArtistMapper.map(
+                        artistComponent.addMultiple(
+                                ArtistMapper.mapToDto(artistRequestList))));
     }
 
 

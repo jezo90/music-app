@@ -1,12 +1,10 @@
-package com.music.artist.model;
+package com.music.artist.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public class ArtistResponse {
-    private final Long id;
+public class ArtistRequestDto {
     private final String name;
 }

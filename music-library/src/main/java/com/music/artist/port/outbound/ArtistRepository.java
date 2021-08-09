@@ -1,14 +1,17 @@
 package com.music.artist.port.outbound;
 
-import com.music.artist.dto.ArtistDto;
+import com.music.artist.dto.ArtistRequestDto;
+import com.music.artist.dto.ArtistResponseDto;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ArtistRepository {
-    List<ArtistDto> getAllArtists();
+    List<ArtistResponseDto> getAll();
 
-    Optional<ArtistDto> getOptionalArtist(Long id);
+    Optional<ArtistResponseDto> getOptional(Long id);
 
-    ArtistDto addArtist(ArtistDto artistDto);
+    ArtistResponseDto add(ArtistRequestDto artistRequestDto);
+
+    List<ArtistResponseDto> addMultiple(List<ArtistRequestDto> artistRequestDtoList);
 }

@@ -1,9 +1,9 @@
 package com.music.artist;
 
-import com.music.artist.dto.ArtistDto;
+import com.music.artist.dto.ArtistRequestDto;
+import com.music.artist.dto.ArtistResponseDto;
 import com.music.artist.port.inbound.ArtistComponent;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,19 +13,23 @@ class ArtistFacade implements ArtistComponent {
     private final ArtistService artistService;
 
     @Override
-    public List<ArtistDto> getAllArtists() {
-
-        return artistService.getAllArtists();
+    public List<ArtistResponseDto> getAll() {
+        return artistService.getAll();
     }
 
     @Override
-    public ArtistDto getArtist(Long id) {
-        return artistService.getArtist(id);
+    public ArtistResponseDto get(Long id) {
+        return artistService.get(id);
     }
 
     @Override
-    public ArtistDto addArtist(ArtistDto artistDto) {
-        return artistService.addArtist(artistDto);
+    public ArtistResponseDto add(ArtistRequestDto artistRequestDto) {
+        return artistService.add(artistRequestDto);
+    }
+
+    @Override
+    public List<ArtistResponseDto> addMultiple(List<ArtistRequestDto> artistRequestDtoList) {
+        return artistService.addMultiple(artistRequestDtoList);
     }
 
 }

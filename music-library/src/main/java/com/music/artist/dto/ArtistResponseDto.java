@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public class ArtistDto {
+public class ArtistResponseDto {
+    private final Long Id;
     private final String name;
 }

@@ -1,8 +1,7 @@
-package com.music.artist;
+package com.music.artist.dao;
 
-import com.music.artist.dao.ArtistEntityMapper;
-import com.music.artist.dao.ArtistSpringRepository;
-import com.music.artist.dto.ArtistDto;
+import com.music.artist.dto.ArtistRequestDto;
+import com.music.artist.dto.ArtistResponseDto;
 import com.music.artist.port.outbound.ArtistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ class ArtistAdapter implements ArtistRepository {
     private final ArtistSpringRepository artistSpringRepository;
 
     @Override
-    public List<ArtistDto> getAllArtists() {
+    public List<ArtistResponseDto> getAll() {
 
         return artistSpringRepository
                 .findAll()
@@ -28,17 +27,25 @@ class ArtistAdapter implements ArtistRepository {
     }
 
     @Override
-    public Optional<ArtistDto> getOptionalArtist(Long id) {
+    public Optional<ArtistResponseDto> getOptional(Long id) {
         return artistSpringRepository
                 .findById(id)
                 .map(ArtistEntityMapper::map);
     }
 
     @Override
-    public ArtistDto addArtist(ArtistDto artistDto) {
+    public ArtistResponseDto add(ArtistRequestDto artistRequestDto) {
         return ArtistEntityMapper.map(
                 artistSpringRepository
                         .save(ArtistEntityMapper
-                                .map(artistDto)));
+                                .map(artistRequestDto)));
+    }
+
+    @Override
+    public List<ArtistResponseDto> addMultiple(List<ArtistRequestDto> artistRequestDtoList) {
+        return ArtistEntityMapper.map(
+                artistSpringRepository
+                        .saveAll(ArtistEntityMapper
+                                .mapToEntity(artistRequestDtoList)));
     }
 }

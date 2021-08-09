@@ -1,18 +1,19 @@
 package com.music.artist.dao;
 
-import com.music.artist.dto.ArtistDto;
+import com.music.artist.dto.ArtistRequestDto;
+import com.music.artist.dto.ArtistResponseDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ArtistEntityMapper {
 
-    public static ArtistDto map(ArtistEntity artistEntity)
+    public static ArtistResponseDto map(ArtistEntity artistEntity)
     {
-        return new ArtistDto(artistEntity.getName());
+        return new ArtistResponseDto(artistEntity.getId(), artistEntity.getName());
     }
 
-    public static List<ArtistDto> map(List<ArtistEntity> artistEntities)
+    public static List<ArtistResponseDto> map(List<ArtistEntity> artistEntities)
     {
         return artistEntities.stream()
                 .map(ArtistEntityMapper::map)
@@ -20,12 +21,20 @@ public class ArtistEntityMapper {
 
     }
 
-    public static ArtistEntity map(ArtistDto artistDto)
+    public static ArtistEntity map(ArtistRequestDto artistRequestDto)
     {
         ArtistEntity artistEntity = new ArtistEntity();
-        artistEntity.setName(artistDto.getName());
+        artistEntity.setName(artistRequestDto.getName());
 
         return artistEntity;
+    }
+
+    public static List<ArtistEntity> mapToEntity(List<ArtistRequestDto> artistRequestDtoList)
+    {
+        return artistRequestDtoList
+                .stream()
+                .map(ArtistEntityMapper::map)
+                .collect(Collectors.toList());
     }
 
 }

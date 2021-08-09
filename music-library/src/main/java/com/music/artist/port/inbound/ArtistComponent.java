@@ -1,15 +1,18 @@
 package com.music.artist.port.inbound;
 
-import com.music.artist.dto.ArtistDto;
+import com.music.artist.dto.ArtistRequestDto;
+import com.music.artist.dto.ArtistResponseDto;
 
 import java.util.List;
 
 public interface ArtistComponent {
 
-    List<ArtistDto> getAllArtists();
+    List<ArtistResponseDto> getAll();
 
-    ArtistDto getArtist(Long id);
+    ArtistResponseDto get(Long id);
 
-    ArtistDto addArtist(ArtistDto artistDto);
+    ArtistResponseDto add(ArtistRequestDto artistRequestDto);
+
+    List<ArtistResponseDto> addMultiple(List<ArtistRequestDto> artistRequestDtoList);
 
 }
