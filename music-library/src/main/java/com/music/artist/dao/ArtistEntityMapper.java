@@ -10,7 +10,12 @@ public class ArtistEntityMapper {
 
     public static ArtistResponseDto map(ArtistEntity artistEntity)
     {
-        return new ArtistResponseDto(artistEntity.getId(), artistEntity.getName());
+        return new ArtistResponseDto(
+                artistEntity.getId(),
+                artistEntity.getNickname(),
+                artistEntity.getFirstName(),
+                artistEntity.getLastName(),
+                artistEntity.getBirthDate());
     }
 
     public static List<ArtistResponseDto> map(List<ArtistEntity> artistEntities)
@@ -24,7 +29,10 @@ public class ArtistEntityMapper {
     public static ArtistEntity map(ArtistRequestDto artistRequestDto)
     {
         ArtistEntity artistEntity = new ArtistEntity();
-        artistEntity.setName(artistRequestDto.getName());
+        artistEntity.setNickname(artistRequestDto.getNickname());
+        artistEntity.setFirstName(artistRequestDto.getFirstName());
+        artistEntity.setLastName(artistRequestDto.getLastName());
+        artistEntity.setBirthDate(artistRequestDto.getBirthDate());
 
         return artistEntity;
     }
