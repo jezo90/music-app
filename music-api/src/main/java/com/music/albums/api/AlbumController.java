@@ -1,10 +1,8 @@
 package com.music.albums.api;
-
-
-import com.music.artist.mapper.ArtistMapper;
-import com.music.artist.model.ArtistRequest;
-import com.music.artist.model.ArtistResponse;
-import com.music.artist.port.inbound.ArtistComponent;
+import com.music.album.port.inbound.AlbumComponent;
+import com.music.albums.mapper.AlbumMapper;
+import com.music.albums.model.AlbumRequest;
+import com.music.albums.model.AlbumResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +17,22 @@ class AlbumController {
     private final AlbumComponent albumComponent;
 
     @GetMapping
-    ResponseEntity<List<ArtistResponse>> getAll()
+    ResponseEntity<List<AlbumResponse>> getAll()
     {
-        return ResponseEntity
-                .ok(ArtistMapper
-                        .map(albumComponent
-                        .getAll()));
+        return ResponseEntity.ok(
+                AlbumMapper.map(
+                        albumComponent.getAll()));
     }
+
+    @PostMapping("/add")
+    ResponseEntity<AlbumResponse> add(AlbumRequest albumRequest)
+    {
+        return ResponseEntity.ok(
+                AlbumMapper.map(
+                        albumComponent.add(
+                                AlbumMapper.map(albumRequest))));
+    }
+
+
+
 }

@@ -1,6 +1,4 @@
 package com.music.artist.api;
-
-
 import com.music.artist.mapper.ArtistMapper;
 import com.music.artist.model.ArtistRequest;
 import com.music.artist.model.ArtistResponse;
