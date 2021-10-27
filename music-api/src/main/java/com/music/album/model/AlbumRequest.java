@@ -1,4 +1,4 @@
-package com.music.albums.model;
+package com.music.album.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,4 +12,5 @@ import java.util.Date;
 public class AlbumRequest {
     private String cdName;
     private Date releaseDate;
+    private Long artistId;
 }

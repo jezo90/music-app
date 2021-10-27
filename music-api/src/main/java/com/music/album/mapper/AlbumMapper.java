@@ -1,9 +1,11 @@
-package com.music.albums.mapper;
+package com.music.album.mapper;
 
+import com.music.album.dto.AlbumDetailsResponseDto;
 import com.music.album.dto.AlbumRequestDto;
 import com.music.album.dto.AlbumResponseDto;
-import com.music.albums.model.AlbumRequest;
-import com.music.albums.model.AlbumResponse;
+import com.music.album.model.AlbumDetailsResponse;
+import com.music.album.model.AlbumRequest;
+import com.music.album.model.AlbumResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +16,8 @@ public class AlbumMapper {
         return new AlbumResponse(
                 albumResponseDto.getId(),
                 albumResponseDto.getCdName(),
-                albumResponseDto.getReleaseDate());
+                albumResponseDto.getReleaseDate(),
+                albumResponseDto.getAuthorId());
     }
 
     public static List<AlbumResponse> map(List<AlbumResponseDto> albumResponseDtoList)
@@ -29,6 +32,15 @@ public class AlbumMapper {
     {
         return new AlbumRequestDto(
                 albumRequest.getCdName(),
-                albumRequest.getReleaseDate());
+                albumRequest.getReleaseDate(),
+                albumRequest.getArtistId());
+    }
+
+    public static AlbumDetailsResponse map(AlbumDetailsResponseDto albumDetailsResponseDto)
+    {
+        return new AlbumDetailsResponse(
+                albumDetailsResponseDto.getCdName(),
+                albumDetailsResponseDto.getReleaseDate(),
+                albumDetailsResponseDto.getAuthor());
     }
 }

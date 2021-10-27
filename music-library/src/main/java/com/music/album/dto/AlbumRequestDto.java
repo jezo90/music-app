@@ -10,5 +10,6 @@ import java.util.Date;
 public class AlbumRequestDto {
     private final String cdName;
     private final Date releaseDate;
+    private final Long artistId;
 }
 

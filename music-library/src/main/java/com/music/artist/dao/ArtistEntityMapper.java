@@ -45,4 +45,5 @@ public class ArtistEntityMapper {
                 .collect(Collectors.toList());
     }
 
+
 }

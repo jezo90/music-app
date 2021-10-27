@@ -7,9 +7,8 @@ import java.util.Date;
 
 @RequiredArgsConstructor
 @Getter
-public class AlbumResponseDto {
-    private final Long id;
+public class AlbumDetailsResponseDto {
     private final String cdName;
     private final Date releaseDate;
-    private final String authorId;
+    private final String author;
 }

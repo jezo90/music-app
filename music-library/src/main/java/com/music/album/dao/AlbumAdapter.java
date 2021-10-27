@@ -1,12 +1,16 @@
 package com.music.album.dao;
 
+import com.music.album.dto.AlbumDetailsResponseDto;
 import com.music.album.dto.AlbumRequestDto;
 import com.music.album.dto.AlbumResponseDto;
 import com.music.album.port.outbound.AlbumRepository;
+import com.music.artist.dao.ArtistEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -23,10 +27,17 @@ class AlbumAdapter implements AlbumRepository {
     }
 
     @Override
+    @Transactional
     public AlbumResponseDto add(AlbumRequestDto albumRequestDto) {
         return AlbumEntityMapper.map(
-                albumSpringRepository.save(
+                albumSpringRepository.saveAndFlush(
                         AlbumEntityMapper
                                 .map(albumRequestDto)));
+    }
+
+    @Override
+    public Optional<AlbumDetailsResponseDto> getOptional(Long id) {
+        return albumSpringRepository.findById(id)
+                .map(AlbumEntityMapper::mapToDetails);
     }
 }
