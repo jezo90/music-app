@@ -10,6 +10,15 @@ import java.util.List;
 @RequiredArgsConstructor
 class TrackFacade implements TrackComponent {
 
-    private final TrackService artistService;
+    private final TrackService trackService;
 
+    @Override
+    public TrackResponseDto get(Long id) {
+        return trackService.get(id);
+    }
+
+    @Override
+    public TrackResponseDto add(TrackRequestDto trackRequestDto) {
+        return trackService.add(trackRequestDto);
+    }
 }

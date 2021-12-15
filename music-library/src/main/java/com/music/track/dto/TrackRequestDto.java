@@ -8,5 +8,8 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Getter
 public class TrackRequestDto {
-    private final String nickname;
+    private final String title;
+    private final String text;
+    private final Boolean feat;
+    private final Long album_id;
 }

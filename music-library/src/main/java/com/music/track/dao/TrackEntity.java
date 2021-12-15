@@ -1,10 +1,10 @@
 package com.music.track.dao;
 
+import com.music.album.dao.AlbumEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @Entity
@@ -14,5 +14,12 @@ public class TrackEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
+    @Column(columnDefinition="TEXT")
+    private String text;
+    private Boolean feat;
 
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private AlbumEntity albumEntity;
 }

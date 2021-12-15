@@ -11,6 +11,18 @@ import java.util.List;
 @RequiredArgsConstructor
 class TrackService {
 
-    private final TrackRepository artistRepository;
+    private final TrackRepository trackRepository;
+
+    public TrackResponseDto get(Long id) {
+
+        return trackRepository
+                .get(id)
+                .orElseThrow(() -> new EntityNotFoundException("There is no track with such Id "));
+    }
+
+    public TrackResponseDto add(TrackRequestDto trackRequestDto)
+    {
+        return trackRepository.add(trackRequestDto);
+    }
 
 }
