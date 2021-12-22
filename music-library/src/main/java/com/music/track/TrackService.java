@@ -22,7 +22,13 @@ class TrackService {
 
     public TrackResponseDto add(TrackRequestDto trackRequestDto)
     {
-        return trackRepository.add(trackRequestDto);
+        TrackRequestDto trackRequestDtoRemovedLinebreaks = new TrackRequestDto(
+                trackRequestDto.getTitle(),
+                trackRequestDto.getText().replaceAll("\\n", " "),
+                trackRequestDto.getFeat(),
+                trackRequestDto.getAlbum_id());
+
+        return trackRepository.add(trackRequestDtoRemovedLinebreaks);
     }
 
 }
