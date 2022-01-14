@@ -1,5 +1,6 @@
 package com.music.artist.port.outbound;
 
+import com.music.album.dto.TrackDetailsDto;
 import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
 
@@ -14,4 +15,6 @@ public interface ArtistRepository {
     ArtistResponseDto add(ArtistRequestDto artistRequestDto);
 
     List<ArtistResponseDto> addMultiple(List<ArtistRequestDto> artistRequestDtoList);
+
+    List<TrackDetailsDto> getArtistTrackList(Long id);
 }

@@ -1,10 +1,12 @@
 package com.music.artist.dao;
 
+import com.music.album.dao.AlbumEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,4 +20,7 @@ public class ArtistEntity {
     private String firstName;
     private String lastName;
     private Date birthDate;
+
+    @OneToMany(mappedBy = "artistEntity")
+    private List<AlbumEntity> albumList;
 }

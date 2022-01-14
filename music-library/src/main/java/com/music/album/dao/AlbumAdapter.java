@@ -3,8 +3,10 @@ package com.music.album.dao;
 import com.music.album.dto.AlbumDetailsResponseDto;
 import com.music.album.dto.AlbumRequestDto;
 import com.music.album.dto.AlbumResponseDto;
+import com.music.album.dto.TrackDetailsDto;
 import com.music.album.port.outbound.AlbumRepository;
 import com.music.artist.dao.ArtistEntityMapper;
+import com.music.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,6 @@ import java.util.Optional;
 class AlbumAdapter implements AlbumRepository {
 
     private final AlbumSpringRepository albumSpringRepository;
-
 
     @Override
     public List<AlbumResponseDto> getAll() {
@@ -40,4 +41,14 @@ class AlbumAdapter implements AlbumRepository {
         return albumSpringRepository.findById(id)
                 .map(AlbumEntityMapper::mapToDetails);
     }
+
+    @Override
+    public List<TrackDetailsDto> getTrackList(Long id) {
+
+        return albumSpringRepository.findById(id).map(AlbumEntityMapper::mapToList)
+                .orElseThrow(() -> new EntityNotFoundException("There is no album with such Id "));
+    }
+
+
+
 }

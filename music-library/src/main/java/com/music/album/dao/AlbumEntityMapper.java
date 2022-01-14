@@ -3,7 +3,9 @@ package com.music.album.dao;
 import com.music.album.dto.AlbumDetailsResponseDto;
 import com.music.album.dto.AlbumRequestDto;
 import com.music.album.dto.AlbumResponseDto;
+import com.music.album.dto.TrackDetailsDto;
 import com.music.artist.dao.ArtistEntity;
+import com.music.track.dao.TrackEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,4 +46,17 @@ public class AlbumEntityMapper {
                 albumEntity.getReleaseDate(),
                 albumEntity.getArtistEntity().getNickname());
     }
+
+    public static List<TrackDetailsDto> mapToList(AlbumEntity albumEntity)
+    {
+        return albumEntity
+                .getTrackList()
+                .stream()
+                .map(trackEntity ->
+                        new TrackDetailsDto(
+                                trackEntity.getId(),
+                                trackEntity.getText())).collect(Collectors.toList());
+
+    }
+
 }
