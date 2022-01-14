@@ -2,17 +2,13 @@ package com.music.quiz;
 
 import com.music.album.dto.TrackDetailsDto;
 import com.music.album.port.outbound.AlbumRepository;
-import com.music.artist.dto.ArtistResponseDto;
 import com.music.artist.port.outbound.ArtistRepository;
-import com.music.exception.EntityNotFoundException;
 import com.music.quiz.dto.QuizCreateDto;
 import com.music.quiz.dto.QuizRequestDto;
 import com.music.quiz.dto.QuizResponseDto;
 import com.music.quiz.port.outbound.QuizRepository;
-import com.music.track.dao.TrackEntity;
 import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -27,17 +23,16 @@ class QuizService {
 
         Random random = new Random();
         int randomTrack = random.nextInt(3);
-        List<TrackDetailsDto> trackList = new ArrayList<>();
+        List<TrackDetailsDto> trackList;
 
         if(quizRequestDto.getAlbum_id()!=null) {
             trackList = albumRepository.getTrackList(quizRequestDto.getAlbum_id());
-            Collections.shuffle(trackList);
         }
         else
         {
             trackList = artistRepository.getArtistTrackList(quizRequestDto.getArtist_id());
-            Collections.shuffle(trackList);
         }
+        Collections.shuffle(trackList);
 
         TrackDetailsDto chosenTrack = trackList.get(randomTrack);
 
