@@ -9,6 +9,4 @@ import java.util.Optional;
 public interface TrackRepository {
     Optional<TrackResponseDto> get(Long id);
     TrackResponseDto add(TrackRequestDto trackRequestDto);
-
-
 }
