@@ -1,19 +1,11 @@
 <form>
-
   <h1 class="h3 mb-3 fw-normal">Register</h1>
 
-  <div *ngIf="this.error != null" class="text-center" style="color: #ff0000">
-    {{this.error}}
-  </div>
-  <div *ngIf="this.error == null">
-    <br/>
-  </div>
+  <input class="form-control" placeholder="Name" required>
 
-  <input class="form-control" [(ngModel)]="user.login"  name= "username" placeholder="Name" required>
+  <input type="email" class="form-control" placeholder="name@example.com" required>
 
-  <input type="email" class="form-control" [(ngModel)]="user.email" name="email" placeholder="name@example.com" required>
+  <input type="password" class="form-control" placeholder="Password" required>
 
-  <input type="password" class="form-control" [(ngModel)]="user.password" name="password"  placeholder="Password" required>
-
-  <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="handleRegister()" >Submit</button>
+  <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
 </form>

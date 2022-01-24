@@ -1,9 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from "../../services/user/user";
-import {Router} from "@angular/router";
-import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {Token} from "../../services/tokenStorage/token";
-import {TokenStorageService} from "../../services/tokenStorage/token-storage.service";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-register',
@@ -12,38 +7,9 @@ import {TokenStorageService} from "../../services/tokenStorage/token-storage.ser
 })
 export class RegisterComponent implements OnInit {
 
-  user: User = new User('', '', '');
-  error: any = null;
-  token: Token = new Token('', '', '');
-
-  constructor(private router: Router,
-              private authService: AuthenticationService,
-              private tokenStorage: TokenStorageService) {
-  }
-
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  handleRegister() {
-    this.authService.register(this.user).subscribe(
-      data => {
-        this.save(data);
-        this.router.navigate(['']);
-      },
-      error => {
-        if (error.status === 401) {
-          this.error = 'That username is taken!';
-        } else if (error.status === 500) {
-          this.error = 'Invalid data!';
-        }
-      }
-    );
-  }
-
-  save(data: any) {
-    this.tokenStorage.signIn(data);
-    console.log(this.tokenStorage.getToken());
   }
 
 }
