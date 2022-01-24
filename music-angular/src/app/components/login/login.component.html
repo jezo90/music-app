@@ -1,0 +1,15 @@
+<form>
+  <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+
+  <div *ngIf="this.error != null" class="text-center" style="color: #ff0000">
+    {{this.error}}
+  </div>
+  <div *ngIf="this.error == null">
+    <br/>
+  </div>
+
+  <input type="email" class="form-control" [(ngModel)]="user.login" name= "username" placeholder="name@example.com">
+  <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password">
+
+  <button class="w-100 btn btn-lg btn-primary" (click)="handleLogin()" type="submit">Log in</button>
+</form>
