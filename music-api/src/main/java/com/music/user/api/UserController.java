@@ -5,21 +5,21 @@ import com.music.user.JwtUtil;
 import com.music.user.dao.UserEntity;
 import com.music.user.mapper.UserMapper;
 import com.music.user.model.UserRequest;
+import com.music.user.model.UserResponse;
+import com.music.user.model.UserToken;
 import com.music.user.port.inbound.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
-
+@CrossOrigin("*")
 @RestController
 class UserController {
 
@@ -43,14 +43,16 @@ class UserController {
         return "czesc";
     }
 
-    @PostMapping("/authenticate")
-    public String generateToken(@RequestBody UserRequest userRequest) throws Exception {
+    @PostMapping("/login")
+    public ResponseEntity<UserToken> generateToken(@RequestBody UserRequest userRequest){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userRequest.getLogin(), userRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return jwtUtil.generateJwtToken(authentication);
+        return ResponseEntity.ok(
+                new UserToken(
+                jwtUtil.generateJwtToken(authentication)));
     }
 
     @PostMapping("/register")
