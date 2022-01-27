@@ -19,7 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.Collections;
 
 @CrossOrigin("*")
@@ -41,7 +40,7 @@ class UserController {
     @PostMapping("/login")
     public ResponseEntity<UserToken> generateToken(@RequestBody UserRequest userRequest){
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(userRequest.login(), userRequest.password()));
+                new UsernamePasswordAuthenticationToken(userRequest.getLogin(), userRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -51,7 +50,7 @@ class UserController {
     }
 
     @PostMapping("/register")
-    public UserEntity register(@RequestBody UserRequest userRequest){
+    public UserEntity register(@RequestBody UserRequest userRequest) {
         UserEntity user = new UserEntity();
         user.setUsername(userRequest.login());
         user.setPassword(passwordEncoder.encode(userRequest.password()));
