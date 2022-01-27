@@ -14,10 +14,10 @@ public class AlbumMapper {
     public static AlbumResponse map(AlbumResponseDto albumResponseDto)
     {
         return new AlbumResponse(
-                albumResponseDto.getId(),
-                albumResponseDto.getCdName(),
-                albumResponseDto.getReleaseDate(),
-                albumResponseDto.getAuthorId());
+                albumResponseDto.id(),
+                albumResponseDto.cdName(),
+                albumResponseDto.releaseDate(),
+                albumResponseDto.authorId());
     }
 
     public static List<AlbumResponse> map(List<AlbumResponseDto> albumResponseDtoList)
@@ -31,16 +31,16 @@ public class AlbumMapper {
     public static AlbumRequestDto map(AlbumRequest albumRequest)
     {
         return new AlbumRequestDto(
-                albumRequest.getCdName(),
-                albumRequest.getReleaseDate(),
-                albumRequest.getArtistId());
+                albumRequest.cdName(),
+                albumRequest.releaseDate(),
+                albumRequest.artistId());
     }
 
     public static AlbumDetailsResponse map(AlbumDetailsResponseDto albumDetailsResponseDto)
     {
         return new AlbumDetailsResponse(
-                albumDetailsResponseDto.getCdName(),
-                albumDetailsResponseDto.getReleaseDate(),
-                albumDetailsResponseDto.getAuthor());
+                albumDetailsResponseDto.cdName(),
+                albumDetailsResponseDto.releaseDate(),
+                albumDetailsResponseDto.author());
     }
 }

@@ -6,8 +6,7 @@ import com.music.track.dto.TrackResponseDto;
 
 public class TrackEntityMapper {
 
-    public static TrackResponseDto map(TrackEntity trackEntity)
-    {
+    public static TrackResponseDto map(TrackEntity trackEntity) {
         return new TrackResponseDto(
                 trackEntity.getTitle(),
                 trackEntity.getText(),
@@ -15,15 +14,14 @@ public class TrackEntityMapper {
         );
     }
 
-    public static TrackEntity map(TrackRequestDto trackRequestDto)
-    {
+    public static TrackEntity map(TrackRequestDto trackRequestDto) {
         AlbumEntity albumEntity = new AlbumEntity();
-        albumEntity.setId(trackRequestDto.getAlbum_id());
+        albumEntity.setId(trackRequestDto.album_id());
 
         TrackEntity trackEntity = new TrackEntity();
-        trackEntity.setTitle(trackRequestDto.getTitle());
-        trackEntity.setText(trackRequestDto.getText());
-        trackEntity.setFeat(trackRequestDto.getFeat());
+        trackEntity.setTitle(trackRequestDto.title());
+        trackEntity.setText(trackRequestDto.text());
+        trackEntity.setFeat(trackRequestDto.feat());
         trackEntity.setAlbumEntity(albumEntity);
 
         return trackEntity;
