@@ -9,19 +9,19 @@ public class TrackMapper {
     public static TrackResponse map(TrackResponseDto trackResponseDto)
     {
         return new TrackResponse(
-                trackResponseDto.getTitle(),
-                trackResponseDto.getText(),
-                trackResponseDto.getFeat()
+                trackResponseDto.title(),
+                trackResponseDto.text(),
+                trackResponseDto.feat()
         );
     }
 
     public static TrackRequestDto map(TrackRequest trackRequest)
     {
         return new TrackRequestDto(
-                trackRequest.getTitle(),
-                trackRequest.getText(),
-                trackRequest.getFeat(),
-                trackRequest.getAlbum_id()
+                trackRequest.title(),
+                trackRequest.text(),
+                trackRequest.feat(),
+                trackRequest.album_id()
         );
     }
 }

@@ -8,6 +8,7 @@ import com.music.user.model.UserRequest;
 import com.music.user.model.UserResponse;
 import com.music.user.model.UserToken;
 import com.music.user.port.inbound.UserComponent;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,22 +22,14 @@ import java.util.Collections;
 
 @CrossOrigin("*")
 @RestController
+@RequiredArgsConstructor
 class UserController {
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private RoleComponent roleComponent;
-
-    @Autowired
-    private UserComponent userComponent;
+    private final JwtUtil jwtUtil;
+    private final AuthenticationManager authenticationManager;
+    private final PasswordEncoder passwordEncoder;
+    private final RoleComponent roleComponent;
+    private final UserComponent userComponent;
 
     @GetMapping("/")
     public String welcome() {
@@ -46,7 +39,7 @@ class UserController {
     @PostMapping("/login")
     public ResponseEntity<UserToken> generateToken(@RequestBody UserRequest userRequest){
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(userRequest.getLogin(), userRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(userRequest.login(), userRequest.password()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -58,8 +51,8 @@ class UserController {
     @PostMapping("/register")
     public UserEntity register(@RequestBody UserRequest userRequest) {
         UserEntity user = new UserEntity();
-        user.setUsername(userRequest.getLogin());
-        user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        user.setUsername(userRequest.login());
+        user.setPassword(passwordEncoder.encode(userRequest.password()));
 
         user.setRoles(Collections.singletonList(
                 UserMapper.map(roleComponent.findById(1L))));

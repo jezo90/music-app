@@ -10,9 +10,9 @@ public class QuizMapper {
     public static QuizRequestDto map(QuizRequest quizRequest)
     {
         return new QuizRequestDto(
-                quizRequest.getAlbum_id(),
-                quizRequest.getArtist_id(),
-                quizRequest.getNumberOfWords()
+                quizRequest.album_id(),
+                quizRequest.artist_id(),
+                quizRequest.numberOfWords()
         );
     }
 
@@ -20,12 +20,12 @@ public class QuizMapper {
     {
         return new QuizResponse(
                 quizResponseDto.quiz_id(),
-                quizResponseDto.track1_title(),
-                quizResponseDto.track1_id(),
-                quizResponseDto.track2_title(),
-                quizResponseDto.track2_id(),
-                quizResponseDto.track3_title(),
-                quizResponseDto.track3_id(),
+                quizResponseDto.firstTrackTitle(),
+                quizResponseDto.firstTrackId(),
+                quizResponseDto.secondTrackTitle(),
+                quizResponseDto.secondTrackId(),
+                quizResponseDto.secondTrackTitle(),
+                quizResponseDto.secondTrackId(),
                 quizResponseDto.words());
     }
 }

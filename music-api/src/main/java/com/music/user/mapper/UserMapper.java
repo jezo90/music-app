@@ -16,8 +16,8 @@ public class UserMapper {
     public static RoleEntity map(RoleResponseDto roleResponseDto)
     {
         RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setId(roleResponseDto.getId());
-        roleEntity.setRoleName(roleResponseDto.getRoleName());
+        roleEntity.setId(roleResponseDto.id());
+        roleEntity.setRoleName(roleResponseDto.roleName());
 
         return roleEntity;
     }

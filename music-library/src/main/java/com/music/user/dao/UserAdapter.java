@@ -1,10 +1,8 @@
 package com.music.user.dao;
 
-import com.music.user.dto.UserResponseDto;
 import com.music.user.port.outbound.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
@@ -15,10 +13,9 @@ class UserAdapter implements UserRepository {
     private final UserSpringRepository userSpringRepository;
 
     @Override
-    public Optional<UserResponseDto> findByUsername(String username) {
+    public Optional<UserEntity> findByUsername(String username) {
         return userSpringRepository
-                .findByUsername(username)
-                .map(UserEntityMapper::map);
+                .findByUsername(username);
     }
 
     @Override

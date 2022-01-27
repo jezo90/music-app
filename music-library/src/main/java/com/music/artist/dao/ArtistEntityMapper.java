@@ -29,10 +29,10 @@ public class ArtistEntityMapper {
     public static ArtistEntity map(ArtistRequestDto artistRequestDto)
     {
         ArtistEntity artistEntity = new ArtistEntity();
-        artistEntity.setNickname(artistRequestDto.getNickname());
-        artistEntity.setFirstName(artistRequestDto.getFirstName());
-        artistEntity.setLastName(artistRequestDto.getLastName());
-        artistEntity.setBirthDate(artistRequestDto.getBirthDate());
+        artistEntity.setNickname(artistRequestDto.nickname());
+        artistEntity.setFirstName(artistRequestDto.firstName());
+        artistEntity.setLastName(artistRequestDto.lastName());
+        artistEntity.setBirthDate(artistRequestDto.birthDate());
 
         return artistEntity;
     }

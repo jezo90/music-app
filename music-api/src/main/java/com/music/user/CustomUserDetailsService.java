@@ -17,16 +17,10 @@ class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserResponse userResponse = UserMapper.map(
-                userRepository
-                        .findByUsername(username)
-                        .orElseThrow(() -> new UsernameNotFoundException("")));
+    public UserDetails loadUserByUsername(String username){
 
-        return new
-                org.springframework.security.core.userdetails.User(
-                userResponse.getUsername(),
-                userResponse.getPassword(),
-                userResponse.getAuthorities());
+        return userRepository
+                        .findByUsername(username)
+                        .orElseThrow(() -> new UsernameNotFoundException(""));
     }
 }

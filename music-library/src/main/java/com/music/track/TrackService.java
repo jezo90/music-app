@@ -6,8 +6,6 @@ import com.music.track.dto.TrackResponseDto;
 import com.music.track.port.outbound.TrackRepository;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 class TrackService {
 
@@ -23,10 +21,10 @@ class TrackService {
     public TrackResponseDto add(TrackRequestDto trackRequestDto)
     {
         TrackRequestDto trackRequestDtoRemovedLinebreaks = new TrackRequestDto(
-                trackRequestDto.getTitle(),
-                trackRequestDto.getText().replaceAll("\\n", " "),
-                trackRequestDto.getFeat(),
-                trackRequestDto.getAlbum_id());
+                trackRequestDto.title(),
+                trackRequestDto.text().replaceAll("\\n", " "),
+                trackRequestDto.feat(),
+                trackRequestDto.album_id());
 
         return trackRepository.add(trackRequestDtoRemovedLinebreaks);
     }

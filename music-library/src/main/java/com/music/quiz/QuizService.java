@@ -25,12 +25,12 @@ class QuizService {
         int randomTrack = random.nextInt(3);
         List<TrackDetailsDto> trackList;
 
-        if(quizRequestDto.getAlbum_id()!=null) {
-            trackList = albumRepository.getTrackList(quizRequestDto.getAlbum_id());
+        if(quizRequestDto.albumId()!=null) {
+            trackList = albumRepository.getTrackList(quizRequestDto.albumId());
         }
         else
         {
-            trackList = artistRepository.getArtistTrackList(quizRequestDto.getArtist_id());
+            trackList = artistRepository.getArtistTrackList(quizRequestDto.artistId());
         }
         Collections.shuffle(trackList);
 
@@ -40,7 +40,7 @@ class QuizService {
                 trackList.get(0).id(),
                 trackList.get(1).id(),
                 trackList.get(2).id(),
-                getWords(chosenTrack, random, quizRequestDto.getNumberOfWords()),
+                getWords(chosenTrack, random, quizRequestDto.numberOfWords()),
                 chosenTrack.id()
         );
 

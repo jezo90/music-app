@@ -1,9 +1,9 @@
 package com.music.quiz.dto;
 
 public record QuizCreateDto(
-        Long trackEntity1,
-        Long trackEntity2,
-        Long trackEntity3,
+        Long firstTrackEntity,
+        Long secondTrackEntity,
+        Long thirdTrackEntity,
         String words,
         Long correctAnswer) {
 }

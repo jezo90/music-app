@@ -11,13 +11,13 @@ public class QuizEntityMapper {
     {
         QuizEntity quizEntity = new QuizEntity();
         TrackEntity trackEntity1 = new TrackEntity();
-        trackEntity1.setId(quizCreateDto.trackEntity1());
+        trackEntity1.setId(quizCreateDto.firstTrackEntity());
 
         TrackEntity trackEntity2 = new TrackEntity();
-        trackEntity2.setId(quizCreateDto.trackEntity2());
+        trackEntity2.setId(quizCreateDto.secondTrackEntity());
 
         TrackEntity trackEntity3 = new TrackEntity();
-        trackEntity3.setId(quizCreateDto.trackEntity3());
+        trackEntity3.setId(quizCreateDto.thirdTrackEntity());
 
         quizEntity.setTrackEntity1(trackEntity1);
         quizEntity.setTrackEntity2(trackEntity2);
