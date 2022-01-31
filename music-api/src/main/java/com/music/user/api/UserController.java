@@ -1,6 +1,6 @@
 package com.music.user.api;
 
-import com.music.exception.EntityNotFoundException;
+import com.music.exception.HandledException;
 import com.music.role.port.inbound.RoleComponent;
 import com.music.user.JwtUtil;
 import com.music.user.dao.UserEntity;
@@ -17,11 +17,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Collections;
 
 @CrossOrigin("*")
@@ -41,7 +39,7 @@ class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserToken> generateToken(@RequestBody UserRequest userRequest){
+    public ResponseEntity<UserToken> generateToken(@RequestBody UserRequest userRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userRequest.login(), userRequest.password()));
 
@@ -49,7 +47,7 @@ class UserController {
 
         return ResponseEntity.ok(
                 new UserToken(
-                jwtUtil.generateJwtToken(authentication)));
+                        jwtUtil.generateJwtToken(authentication)));
     }
 
     @PostMapping("/register")
@@ -63,14 +61,14 @@ class UserController {
                 UserMapper.map(roleComponent.findById(1L))));
         user.setEnabled(true);
 
-        if( userComponent.usernameExists(user.getUsername()) )
+        if(userComponent.usernameExists(user.getUsername()))
         {
-            throw new EntityNotFoundException("Username is already taken!");
+            throw new HandledException(490,"Username is already taken");
         }
 
-        if( userComponent.emailExists(user.getEmail()) )
+        if(userComponent.emailExists(user.getEmail()))
         {
-            throw new EntityNotFoundException("Email is already taken!");
+            throw new HandledException(491,"Email is already taken");
         }
 
         return userComponent.saveUser(user);
