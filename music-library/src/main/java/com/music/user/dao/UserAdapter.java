@@ -22,4 +22,16 @@ class UserAdapter implements UserRepository {
     public UserEntity saveUser(UserEntity userEntity) {
         return userSpringRepository.save(userEntity);
     }
+
+    @Override
+    public Boolean usernameExists(String username) {
+        return userSpringRepository.existsByUsername(username);
+    }
+
+    @Override
+    public Boolean emailExists(String email) {
+        return userSpringRepository.existsByEmail(email);
+    }
+
+
 }

@@ -14,4 +14,14 @@ class UserFacade implements UserComponent {
     public UserEntity saveUser(UserEntity userEntity) {
         return userService.saveUser(userEntity);
     }
+
+    @Override
+    public Boolean usernameExists(String username) {
+        return userService.usernameExists(username);
+    }
+
+    @Override
+    public Boolean emailExists(String email) {
+        return userService.emailExists(email);
+    }
 }
