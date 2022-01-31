@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class CustomExceptionHandler {
     @ExceptionHandler
-    public ResponseEntity<EntityErrorResponse> EntityNotFound(EntityNotFoundException ex) {
+    public ResponseEntity<EntityErrorResponse> EmailFound(HandledException ex) {
         EntityErrorResponse postErrorRes = EntityErrorResponse.builder()
-                .status(HttpStatus.NOT_FOUND.value())
+                .status(ex.getCode())
                 .message(ex.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build();
 
-        return new ResponseEntity<>(postErrorRes, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(postErrorRes, HttpStatus.FOUND);
     }
 }

@@ -32,6 +32,4 @@ class UserAdapter implements UserRepository {
     public Boolean emailExists(String email) {
         return userSpringRepository.existsByEmail(email);
     }
-
-
 }
