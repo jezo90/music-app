@@ -2,5 +2,6 @@ package com.music.user.model;
 
 public record UserRequest(
         String login,
-        String password
+        String password,
+        String email
 ) { }

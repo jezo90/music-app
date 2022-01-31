@@ -1,5 +1,6 @@
 package com.music.user.api;
 
+import com.music.exception.EntityNotFoundException;
 import com.music.role.port.inbound.RoleComponent;
 import com.music.user.JwtUtil;
 import com.music.user.dao.UserEntity;
@@ -18,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Collections;
 
 @CrossOrigin("*")
@@ -49,14 +51,25 @@ class UserController {
     }
 
     @PostMapping("/register")
-    public UserEntity register(@RequestBody UserRequest userRequest) {
+    public UserEntity register(@RequestBody UserRequest userRequest){
         UserEntity user = new UserEntity();
         user.setUsername(userRequest.login());
         user.setPassword(passwordEncoder.encode(userRequest.password()));
+        user.setEmail(userRequest.email());
 
         user.setRoles(Collections.singletonList(
                 UserMapper.map(roleComponent.findById(1L))));
         user.setEnabled(true);
+
+        if( userComponent.usernameExists(user.getUsername()) )
+        {
+            throw new EntityNotFoundException("Username is already taken!");
+        }
+
+        if( userComponent.emailExists(user.getEmail()) )
+        {
+            throw new EntityNotFoundException("Email is already taken!");
+        }
 
         return userComponent.saveUser(user);
     }
