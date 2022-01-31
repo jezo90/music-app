@@ -1,11 +1,11 @@
 package com.music.user.api;
 
+import com.music.exception.HandledException;
 import com.music.role.port.inbound.RoleComponent;
 import com.music.user.JwtUtil;
 import com.music.user.dao.UserEntity;
 import com.music.user.mapper.UserMapper;
 import com.music.user.model.UserRequest;
-import com.music.user.model.UserResponse;
 import com.music.user.model.UserToken;
 import com.music.user.port.inbound.UserComponent;
 import lombok.RequiredArgsConstructor;
@@ -60,14 +60,12 @@ class UserController {
                 UserMapper.map(roleComponent.findById(1L))));
         user.setEnabled(true);
 
-        if(userComponent.usernameExists(user.getUsername()))
-        {
-            throw new HandledException(490,"Username is already taken");
+        if (userComponent.usernameExists(user.getUsername())) {
+            throw new HandledException(490, "Username is already taken");
         }
 
-        if(userComponent.emailExists(user.getEmail()))
-        {
-            throw new HandledException(491,"Email is already taken");
+        if (userComponent.emailExists(user.getEmail())) {
+            throw new HandledException(491, "Email is already taken");
         }
 
         return userComponent.saveUser(user);
