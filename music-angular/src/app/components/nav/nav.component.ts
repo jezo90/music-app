@@ -11,8 +11,17 @@ export class NavComponent implements OnInit {
   constructor(private tokenStorage: TokenStorageService) {
   }
 
+  isLoggedIn()
+  {
+    console.log(this.tokenStorage.isLogged);
+    return this.tokenStorage.isLogged;
+  }
+
+
   ngOnInit(): void {
   }
+
+
 
   handleLogout() {
     this.tokenStorage.signOut();
