@@ -1,6 +1,5 @@
 package com.music.exception;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,12 +10,11 @@ import java.time.LocalDateTime;
 public class CustomExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<EntityErrorResponse> EmailFound(HandledException ex) {
-        EntityErrorResponse postErrorRes = EntityErrorResponse.builder()
-                .status(ex.getCode())
-                .message(ex.getMessage())
-                .timestamp(LocalDateTime.now())
-                .build();
+        EntityErrorResponse postErrorRes = new EntityErrorResponse(
+                ex.getCode(),
+                ex.getMessage(),
+                LocalDateTime.now());
 
-        return new ResponseEntity<>(postErrorRes, HttpStatus.FOUND);
+        return ResponseEntity.status(ex.getCode()).body(postErrorRes);
     }
 }

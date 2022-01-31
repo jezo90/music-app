@@ -11,11 +11,10 @@ import java.time.LocalDateTime;
 public class CustomExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<EntityErrorResponse> EntityNotFound(EntityNotFoundException ex) {
-        EntityErrorResponse postErrorRes = EntityErrorResponse.builder()
-                .status(HttpStatus.NOT_FOUND.value())
-                .message(ex.getMessage())
-                .timestamp(LocalDateTime.now())
-                .build();
+        EntityErrorResponse postErrorRes = new EntityErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage(),
+                LocalDateTime.now());
 
         return new ResponseEntity<>(postErrorRes, HttpStatus.NOT_FOUND);
     }
