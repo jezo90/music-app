@@ -1,13 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {Token} from "./token";
 
-export class Token {
-  constructor(
-    public token: string,
-    public username: string,
-    public roles: any
-  ) {}
-}
+
 const TOKEN_KEY = 'token';
 const USERNAME_KEY = 'username';
 const ROLES_KEY = 'roles';
