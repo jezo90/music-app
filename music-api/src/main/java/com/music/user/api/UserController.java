@@ -9,7 +9,6 @@ import com.music.user.model.UserRequest;
 import com.music.user.model.UserToken;
 import com.music.user.port.inbound.UserComponent;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,7 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.Collections;
 
 @CrossOrigin("*")
@@ -50,7 +48,7 @@ class UserController {
     }
 
     @PostMapping("/register")
-    public UserEntity register(@RequestBody UserRequest userRequest) {
+    public UserEntity register(@RequestBody UserRequest userRequest) throws HandledException {
         UserEntity user = new UserEntity();
         user.setUsername(userRequest.login());
         user.setPassword(passwordEncoder.encode(userRequest.password()));
@@ -60,14 +58,16 @@ class UserController {
                 UserMapper.map(roleComponent.findById(1L))));
         user.setEnabled(true);
 
-        if (userComponent.usernameExists(user.getUsername())) {
-            throw new HandledException(490, "Username is already taken");
+        if(userComponent.usernameExists(user.getUsername()))
+        {
+            throw new HandledException(490,"Username is already taken");
         }
 
-        if (userComponent.emailExists(user.getEmail())) {
-            throw new HandledException(491, "Email is already taken");
+        if(userComponent.emailExists(user.getEmail()))
+        {
+            throw new HandledException(491,"Email is already taken");
         }
-
+        
         return userComponent.saveUser(user);
     }
 
