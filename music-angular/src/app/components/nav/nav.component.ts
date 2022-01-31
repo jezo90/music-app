@@ -13,7 +13,6 @@ export class NavComponent implements OnInit {
 
   isLoggedIn()
   {
-    console.log(this.tokenStorage.isLogged);
     return this.tokenStorage.isLogged;
   }
 
