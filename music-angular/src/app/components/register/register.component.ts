@@ -32,8 +32,8 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['']);
       },
       error => {
-        if (error.status === 401) {
-          this.error = 'That username is taken!';
+        if (error.status === 404) {
+          this.error = 'Username/email is taken!';
         } else if (error.status === 500) {
           this.error = 'Invalid data!';
         }
