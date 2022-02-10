@@ -6,9 +6,7 @@ import com.music.quiz.model.QuizRequest;
 import com.music.quiz.model.QuizResponse;
 
 public class QuizMapper {
-
-    public static QuizRequestDto map(QuizRequest quizRequest)
-    {
+    public static QuizRequestDto map(QuizRequest quizRequest) {
         return new QuizRequestDto(
                 quizRequest.album_id(),
                 quizRequest.artist_id(),
@@ -16,16 +14,16 @@ public class QuizMapper {
         );
     }
 
-    public static QuizResponse map(QuizResponseDto quizResponseDto)
-    {
+    public static QuizResponse map(QuizResponseDto quizResponseDto) {
         return new QuizResponse(
-                quizResponseDto.quiz_id(),
+                quizResponseDto.quizId(),
                 quizResponseDto.firstTrackTitle(),
                 quizResponseDto.firstTrackId(),
                 quizResponseDto.secondTrackTitle(),
                 quizResponseDto.secondTrackId(),
                 quizResponseDto.secondTrackTitle(),
                 quizResponseDto.secondTrackId(),
-                quizResponseDto.words());
+                quizResponseDto.words()
+        );
     }
 }

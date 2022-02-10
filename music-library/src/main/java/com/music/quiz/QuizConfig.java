@@ -10,8 +10,7 @@ import org.springframework.context.annotation.Configuration;
 class QuizConfig {
 
     @Bean
-    QuizFacade quizFacade(QuizRepository quizRepository, AlbumRepository albumRepository, ArtistRepository artistRepository)
-    {
+    QuizFacade quizFacade(QuizRepository quizRepository, AlbumRepository albumRepository, ArtistRepository artistRepository) {
         QuizService quizService = new QuizService(quizRepository, albumRepository, artistRepository);
         return new QuizFacade(quizService);
     }

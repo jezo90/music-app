@@ -7,8 +7,7 @@ import com.music.track.dao.TrackEntity;
 
 public class QuizEntityMapper {
 
-    public static QuizEntity map(QuizCreateDto quizCreateDto)
-    {
+    public static QuizEntity map(QuizCreateDto quizCreateDto) {
         QuizEntity quizEntity = new QuizEntity();
         TrackEntity trackEntity1 = new TrackEntity();
         trackEntity1.setId(quizCreateDto.firstTrackEntity());
@@ -30,8 +29,7 @@ public class QuizEntityMapper {
         return quizEntity;
     }
 
-    public static QuizResponseDto map(QuizEntity quizEntity)
-    {
+    public static QuizResponseDto map(QuizEntity quizEntity) {
         return new QuizResponseDto(
                 quizEntity.getId(),
                 quizEntity.getTrackEntity1().getTitle(),

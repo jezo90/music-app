@@ -13,19 +13,16 @@ import java.util.List;
 class AlbumService {
     private final AlbumRepository albumRepository;
 
-    List<AlbumResponseDto> getAll()
-    {
+    List<AlbumResponseDto> getAll() {
         return albumRepository.getAll();
     }
 
-    AlbumResponseDto add(AlbumRequestDto albumRequestDto)
-    {
+    AlbumResponseDto add(AlbumRequestDto albumRequestDto) {
         return albumRepository.add(albumRequestDto);
     }
 
-    AlbumDetailsResponseDto get(Long id)
-    {
+    AlbumDetailsResponseDto get(Long id) {
         return albumRepository.getOptional(id)
-                .orElseThrow(() -> new EntityNotFoundException("There is no artist with such Id "));
+                .orElseThrow(() -> new EntityNotFoundException("There is no artist with such Id"));
     }
 }

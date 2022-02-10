@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/quiz")
 public class QuizController {
-
     private final QuizComponent quizComponent;
 
     @PostMapping
-    ResponseEntity<QuizResponse> createQuiz(@RequestBody QuizRequest quizRequest)
-    {
+    ResponseEntity<QuizResponse> createQuiz(@RequestBody QuizRequest quizRequest) {
         return ResponseEntity.ok(
                 QuizMapper.map(
                         quizComponent.createQuiz(

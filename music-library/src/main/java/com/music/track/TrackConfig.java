@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 class TrackConfig {
 
     @Bean
-    TrackFacade trackFacade(TrackRepository trackRepository)
-    {
+    TrackFacade trackFacade(TrackRepository trackRepository) {
         TrackService trackService = new TrackService(trackRepository);
         return new TrackFacade(trackService);
     }

@@ -1,6 +1,6 @@
 package com.music.user.api;
 
-import com.music.exception.HandledException;
+import com.music.exception.EntityNotFoundException;
 import com.music.role.port.inbound.RoleComponent;
 import com.music.user.JwtUtil;
 import com.music.user.dao.UserEntity;
@@ -23,7 +23,6 @@ import java.util.Collections;
 @RestController
 @RequiredArgsConstructor
 class UserController {
-
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
@@ -48,7 +47,7 @@ class UserController {
     }
 
     @PostMapping("/register")
-    public UserEntity register(@RequestBody UserRequest userRequest) throws HandledException {
+    public UserEntity register(@RequestBody UserRequest userRequest) {
         UserEntity user = new UserEntity();
         user.setUsername(userRequest.login());
         user.setPassword(passwordEncoder.encode(userRequest.password()));
@@ -58,16 +57,14 @@ class UserController {
                 UserMapper.map(roleComponent.findById(1L))));
         user.setEnabled(true);
 
-        if(userComponent.usernameExists(user.getUsername()))
-        {
-            throw new HandledException(490,"Username is already taken");
+        if (userComponent.usernameExists(user.getUsername())) {
+            throw new EntityNotFoundException("Username is already taken", 490);
         }
 
-        if(userComponent.emailExists(user.getEmail()))
-        {
-            throw new HandledException(491,"Email is already taken");
+        if (userComponent.emailExists(user.getEmail())) {
+            throw new EntityNotFoundException("Email is already taken", 491);
         }
-        
+
         return userComponent.saveUser(user);
     }
 

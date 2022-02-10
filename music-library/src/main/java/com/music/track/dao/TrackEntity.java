@@ -15,11 +15,11 @@ public class TrackEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String text;
     private Boolean feat;
 
     @ManyToOne
-    @JoinColumn(name = "album_id")
+    @JoinColumn(name = "albumId")
     private AlbumEntity albumEntity;
 }

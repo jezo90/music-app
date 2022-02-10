@@ -18,13 +18,13 @@ class TrackService {
                 .orElseThrow(() -> new EntityNotFoundException("There is no track with such Id "));
     }
 
-    public TrackResponseDto add(TrackRequestDto trackRequestDto)
-    {
+    public TrackResponseDto add(TrackRequestDto trackRequestDto) {
         TrackRequestDto trackRequestDtoRemovedLinebreaks = new TrackRequestDto(
                 trackRequestDto.title(),
                 trackRequestDto.text().replaceAll("\\n", " "),
                 trackRequestDto.feat(),
-                trackRequestDto.album_id());
+                trackRequestDto.albumId()
+        );
 
         return trackRepository.add(trackRequestDtoRemovedLinebreaks);
     }

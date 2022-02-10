@@ -9,7 +9,6 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 class UserAdapter implements UserRepository {
-
     private final UserSpringRepository userSpringRepository;
 
     @Override

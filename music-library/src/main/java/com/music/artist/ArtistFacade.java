@@ -9,7 +9,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 class ArtistFacade implements ArtistComponent {
-
     private final ArtistService artistService;
 
     @Override

@@ -15,7 +15,8 @@ public class AlbumEntityMapper {
                 albumEntity.getId(),
                 albumEntity.getCdName(),
                 albumEntity.getReleaseDate(),
-                albumEntity.getArtistEntity().getId().toString());
+                albumEntity.getArtistEntity().getId().toString()
+        );
     }
 
     public static List<AlbumResponseDto> map(List<AlbumEntity> albumEntityList) {
@@ -40,7 +41,8 @@ public class AlbumEntityMapper {
         return new AlbumDetailsResponseDto(
                 albumEntity.getCdName(),
                 albumEntity.getReleaseDate(),
-                albumEntity.getArtistEntity().getNickname());
+                albumEntity.getArtistEntity().getNickname()
+        );
     }
 
     public static List<TrackDetailsDto> mapToList(AlbumEntity albumEntity) {
@@ -48,9 +50,10 @@ public class AlbumEntityMapper {
                 .getTrackList()
                 .stream()
                 .map(trackEntity ->
-                        new TrackDetailsDto(
-                                trackEntity.getId(),
-                                trackEntity.getText())).collect(Collectors.toList());
+                             new TrackDetailsDto(
+                                     trackEntity.getId(),
+                                     trackEntity.getText()
+                             )).collect(Collectors.toList());
 
     }
 

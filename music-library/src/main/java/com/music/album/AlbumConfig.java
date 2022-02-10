@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 class AlbumConfig {
 
     @Bean
-    AlbumFacade albumFacade(AlbumRepository albumRepository)
-    {
+    AlbumFacade albumFacade(AlbumRepository albumRepository) {
         AlbumService albumService = new AlbumService(albumRepository);
         return new AlbumFacade(albumService);
     }

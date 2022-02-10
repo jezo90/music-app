@@ -11,36 +11,35 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AlbumMapper {
-    public static AlbumResponse map(AlbumResponseDto albumResponseDto)
-    {
+    public static AlbumResponse map(AlbumResponseDto albumResponseDto) {
         return new AlbumResponse(
                 albumResponseDto.id(),
                 albumResponseDto.cdName(),
                 albumResponseDto.releaseDate(),
-                albumResponseDto.authorId());
+                albumResponseDto.authorId()
+        );
     }
 
-    public static List<AlbumResponse> map(List<AlbumResponseDto> albumResponseDtoList)
-    {
+    public static List<AlbumResponse> map(List<AlbumResponseDto> albumResponseDtoList) {
         return albumResponseDtoList
                 .stream()
                 .map(AlbumMapper::map)
                 .collect(Collectors.toList());
     }
 
-    public static AlbumRequestDto map(AlbumRequest albumRequest)
-    {
+    public static AlbumRequestDto map(AlbumRequest albumRequest) {
         return new AlbumRequestDto(
                 albumRequest.cdName(),
                 albumRequest.releaseDate(),
-                albumRequest.artistId());
+                albumRequest.artistId()
+        );
     }
 
-    public static AlbumDetailsResponse map(AlbumDetailsResponseDto albumDetailsResponseDto)
-    {
+    public static AlbumDetailsResponse map(AlbumDetailsResponseDto albumDetailsResponseDto) {
         return new AlbumDetailsResponse(
                 albumDetailsResponseDto.cdName(),
                 albumDetailsResponseDto.releaseDate(),
-                albumDetailsResponseDto.author());
+                albumDetailsResponseDto.author()
+        );
     }
 }

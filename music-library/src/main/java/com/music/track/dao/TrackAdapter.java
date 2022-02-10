@@ -12,7 +12,6 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 class TrackAdapter implements TrackRepository {
-
     private final TrackSpringRepository trackSpringRepository;
 
     @Override

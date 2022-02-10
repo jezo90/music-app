@@ -16,7 +16,7 @@ public class TrackEntityMapper {
 
     public static TrackEntity map(TrackRequestDto trackRequestDto) {
         AlbumEntity albumEntity = new AlbumEntity();
-        albumEntity.setId(trackRequestDto.album_id());
+        albumEntity.setId(trackRequestDto.albumId());
 
         TrackEntity trackEntity = new TrackEntity();
         trackEntity.setTitle(trackRequestDto.title());

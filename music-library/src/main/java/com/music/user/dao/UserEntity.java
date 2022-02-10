@@ -18,7 +18,6 @@ import java.util.List;
 @Table(name = "users")
 @NoArgsConstructor
 public class UserEntity implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -60,7 +59,7 @@ public class UserEntity implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         roles.forEach(roleEntity ->
-                authorities.add(new SimpleGrantedAuthority(roleEntity.getRoleName().name())));
+                              authorities.add(new SimpleGrantedAuthority(roleEntity.getRoleName().name())));
         return authorities;
     }
 

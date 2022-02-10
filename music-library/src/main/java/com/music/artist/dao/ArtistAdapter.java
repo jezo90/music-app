@@ -5,7 +5,6 @@ import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
 import com.music.artist.port.outbound.ArtistRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.spel.spi.Function;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 class ArtistAdapter implements ArtistRepository {
-
     private final ArtistSpringRepository artistSpringRepository;
 
     @Override
@@ -40,7 +38,7 @@ class ArtistAdapter implements ArtistRepository {
         return ArtistEntityMapper.map(
                 artistSpringRepository
                         .save(ArtistEntityMapper
-                                .map(artistRequestDto)));
+                                      .map(artistRequestDto)));
     }
 
     @Override
@@ -48,7 +46,7 @@ class ArtistAdapter implements ArtistRepository {
         return ArtistEntityMapper.map(
                 artistSpringRepository
                         .saveAll(ArtistEntityMapper
-                                .mapToEntity(artistRequestDtoList)));
+                                         .mapToEntity(artistRequestDtoList)));
     }
 
     @Override
@@ -57,10 +55,11 @@ class ArtistAdapter implements ArtistRepository {
                 getById(id).getAlbumList()
                 .stream()
                 .flatMap(albumEntity -> albumEntity.getTrackList()
-                                .stream()
-                                .map(trackEntity -> new TrackDetailsDto(
-                                        trackEntity.getId(),
-                                        trackEntity.getText())))
+                        .stream()
+                        .map(trackEntity -> new TrackDetailsDto(
+                                trackEntity.getId(),
+                                trackEntity.getText()
+                        )))
                 .collect(Collectors.toList());
     }
 }

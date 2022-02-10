@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 class UserFacade implements UserComponent {
-
-
     private final UserService userService;
 
     @Override

@@ -5,11 +5,8 @@ import com.music.quiz.dto.QuizResponseDto;
 import com.music.quiz.port.inbound.QuizComponent;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 class QuizFacade implements QuizComponent {
-
     private final QuizService quizService;
 
     @Override

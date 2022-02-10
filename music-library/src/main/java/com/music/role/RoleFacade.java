@@ -6,11 +6,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 class RoleFacade implements RoleComponent {
-
     private final RoleService roleService;
 
-    public RoleResponseDto findById(Long id)
-    {
+    public RoleResponseDto findById(Long id) {
         return roleService.findById(id);
     }
 }

@@ -4,4 +4,5 @@ public record UserRequest(
         String login,
         String password,
         String email
-) { }
+) {
+}

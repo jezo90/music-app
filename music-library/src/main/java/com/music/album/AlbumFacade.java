@@ -10,16 +10,13 @@ import java.util.List;
 
 @RequiredArgsConstructor
 class AlbumFacade implements AlbumComponent {
-
     private final AlbumService albumService;
 
-    public List<AlbumResponseDto> getAll()
-    {
+    public List<AlbumResponseDto> getAll() {
         return albumService.getAll();
     }
 
-    public AlbumResponseDto add(AlbumRequestDto albumRequestDto)
-    {
+    public AlbumResponseDto add(AlbumRequestDto albumRequestDto) {
         return albumService.add(albumRequestDto);
     }
 

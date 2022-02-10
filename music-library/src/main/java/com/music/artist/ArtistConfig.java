@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 class ArtistConfig {
 
     @Bean
-    ArtistFacade artistFacade(ArtistRepository artistRepository)
-    {
+    ArtistFacade artistFacade(ArtistRepository artistRepository) {
         ArtistService artistService = new ArtistService(artistRepository);
         return new ArtistFacade(artistService);
     }

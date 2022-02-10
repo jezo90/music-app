@@ -11,7 +11,6 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 class RoleAdapter implements RoleRepository {
-
     private final RoleSpringRepository roleSpringRepository;
 
     @Override

@@ -6,8 +6,7 @@ import com.music.track.model.TrackRequest;
 import com.music.track.model.TrackResponse;
 
 public class TrackMapper {
-    public static TrackResponse map(TrackResponseDto trackResponseDto)
-    {
+    public static TrackResponse map(TrackResponseDto trackResponseDto) {
         return new TrackResponse(
                 trackResponseDto.title(),
                 trackResponseDto.text(),
@@ -15,13 +14,12 @@ public class TrackMapper {
         );
     }
 
-    public static TrackRequestDto map(TrackRequest trackRequest)
-    {
+    public static TrackRequestDto map(TrackRequest trackRequest) {
         return new TrackRequestDto(
                 trackRequest.title(),
                 trackRequest.text(),
                 trackRequest.feat(),
-                trackRequest.album_id()
+                trackRequest.albumId()
         );
     }
 }

@@ -1,4 +1,5 @@
 package com.music.artist.model;
+
 import java.util.Date;
 
 public record ArtistRequest(
@@ -6,4 +7,5 @@ public record ArtistRequest(
         String firstName,
         String lastName,
         Date birthDate
-) { }
+) {
+}

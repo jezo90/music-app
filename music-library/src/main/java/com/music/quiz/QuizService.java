@@ -25,11 +25,9 @@ class QuizService {
         int randomTrack = random.nextInt(3);
         List<TrackDetailsDto> trackList;
 
-        if(quizRequestDto.albumId()!=null) {
+        if (quizRequestDto.albumId() != null) {
             trackList = albumRepository.getTrackList(quizRequestDto.albumId());
-        }
-        else
-        {
+        } else {
             trackList = artistRepository.getArtistTrackList(quizRequestDto.artistId());
         }
         Collections.shuffle(trackList);
@@ -48,13 +46,11 @@ class QuizService {
         return quizRepository.createQuiz(quizCreateDto);
     }
 
-    private String getWords(TrackDetailsDto trackDetailsDto, Random random, int numberOfWords)
-    {
+    private String getWords(TrackDetailsDto trackDetailsDto, Random random, int numberOfWords) {
         String[] words = trackDetailsDto.text().split("\\s");
         StringBuilder chosenText = new StringBuilder();
         int randomWord = random.nextInt(words.length - numberOfWords - 1);
-        for(int i=randomWord; i<randomWord + numberOfWords; i++)
-        {
+        for (int i = randomWord; i < randomWord + numberOfWords; i++) {
             chosenText.append(words[i]).append(" ");
         }
         return chosenText.toString();

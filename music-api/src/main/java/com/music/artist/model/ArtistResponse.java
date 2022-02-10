@@ -8,4 +8,5 @@ public record ArtistResponse(
         String firstName,
         String lastName,
         Date birthDate
-) { }
+) {
+}

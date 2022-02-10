@@ -5,11 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-class UserConfig{
+class UserConfig {
 
     @Bean
-    UserFacade userFacade(UserRepository userRepository)
-    {
+    UserFacade userFacade(UserRepository userRepository) {
         UserService userService = new UserService(userRepository);
         return new UserFacade(userService);
     }
