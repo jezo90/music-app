@@ -8,41 +8,39 @@ import java.util.stream.Collectors;
 
 public class ArtistEntityMapper {
 
-    public static ArtistResponseDto map(ArtistEntity artistEntity)
-    {
+    public static ArtistResponseDto map(ArtistEntity artistEntity) {
         return new ArtistResponseDto(
                 artistEntity.getId(),
                 artistEntity.getNickname(),
                 artistEntity.getFirstName(),
                 artistEntity.getLastName(),
-                artistEntity.getBirthDate());
+                artistEntity.getBirthDate()
+        );
     }
 
-    public static List<ArtistResponseDto> map(List<ArtistEntity> artistEntities)
-    {
+    public static List<ArtistResponseDto> map(List<ArtistEntity> artistEntities) {
         return artistEntities.stream()
                 .map(ArtistEntityMapper::map)
                 .collect(Collectors.toList());
 
     }
 
-    public static ArtistEntity map(ArtistRequestDto artistRequestDto)
-    {
+    public static ArtistEntity map(ArtistRequestDto artistRequestDto) {
         ArtistEntity artistEntity = new ArtistEntity();
-        artistEntity.setNickname(artistRequestDto.getNickname());
-        artistEntity.setFirstName(artistRequestDto.getFirstName());
-        artistEntity.setLastName(artistRequestDto.getLastName());
-        artistEntity.setBirthDate(artistRequestDto.getBirthDate());
+        artistEntity.setNickname(artistRequestDto.nickname());
+        artistEntity.setFirstName(artistRequestDto.firstName());
+        artistEntity.setLastName(artistRequestDto.lastName());
+        artistEntity.setBirthDate(artistRequestDto.birthDate());
 
         return artistEntity;
     }
 
-    public static List<ArtistEntity> mapToEntity(List<ArtistRequestDto> artistRequestDtoList)
-    {
+    public static List<ArtistEntity> mapToEntity(List<ArtistRequestDto> artistRequestDtoList) {
         return artistRequestDtoList
                 .stream()
                 .map(ArtistEntityMapper::map)
                 .collect(Collectors.toList());
     }
+
 
 }

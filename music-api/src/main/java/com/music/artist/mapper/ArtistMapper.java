@@ -10,47 +10,45 @@ import java.util.stream.Collectors;
 
 public class ArtistMapper {
 
-    public static ArtistResponse map(ArtistResponseDto artistResponseDto)
-    {
+    public static ArtistResponse map(ArtistResponseDto artistResponseDto) {
         return new ArtistResponse(
-                artistResponseDto.getId(),
-                artistResponseDto.getNickname(),
-                artistResponseDto.getFirstName(),
-                artistResponseDto.getLastName(),
-                artistResponseDto.getBirthDate());
+                artistResponseDto.id(),
+                artistResponseDto.nickname(),
+                artistResponseDto.firstName(),
+                artistResponseDto.lastName(),
+                artistResponseDto.birthDate()
+        );
     }
 
-    public static List<ArtistResponse> map(List<ArtistResponseDto> artistResponseDtoList)
-    {
+    public static List<ArtistResponse> map(List<ArtistResponseDto> artistResponseDtoList) {
         return artistResponseDtoList
                 .stream()
                 .map(ArtistMapper::map)
                 .collect(Collectors.toList());
     }
 
-    public static ArtistRequestDto map(ArtistResponse artistResponse)
-    {
+    public static ArtistRequestDto map(ArtistResponse artistResponse) {
         return new ArtistRequestDto(
-                artistResponse.getNickname(),
-                artistResponse.getFirstName(),
-                artistResponse.getLastName(),
-                artistResponse.getBirthDate());
+                artistResponse.nickname(),
+                artistResponse.firstName(),
+                artistResponse.lastName(),
+                artistResponse.birthDate()
+        );
     }
 
-    public static List<ArtistRequestDto> mapToDto(List<ArtistRequest> artistRequestList)
-    {
+    public static List<ArtistRequestDto> mapToDto(List<ArtistRequest> artistRequestList) {
         return artistRequestList
                 .stream()
                 .map(ArtistMapper::map)
                 .collect(Collectors.toList());
     }
 
-    public static ArtistRequestDto map(ArtistRequest artistRequest)
-    {
+    public static ArtistRequestDto map(ArtistRequest artistRequest) {
         return new ArtistRequestDto(
-                artistRequest.getNickname(),
-                artistRequest.getFirstName(),
-                artistRequest.getLastName(),
-                artistRequest.getBirthDate());
+                artistRequest.nickname(),
+                artistRequest.firstName(),
+                artistRequest.lastName(),
+                artistRequest.birthDate()
+        );
     }
 }
