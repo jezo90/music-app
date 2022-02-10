@@ -7,4 +7,5 @@ public record ArtistResponseDto(
         String nickname,
         String firstName,
         String lastName,
-        Date birthDate) { }
+        Date birthDate) {
+}
