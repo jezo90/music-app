@@ -1,0 +1,10 @@
+<div *ngFor="let tempArtist of this.artists">
+
+  <a routerLink="/artist/{{tempArtist.id}}">
+    <p>
+      {{tempArtist.nickname}} <br/>
+      {{tempArtist.firstName}} {{tempArtist.lastName}} <br/>
+      {{tempArtist.birthDate}}
+    </p>
+  </a>
+</div>

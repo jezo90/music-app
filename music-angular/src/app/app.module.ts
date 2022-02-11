@@ -9,6 +9,8 @@ import {AppRoutingModule} from "./app-routing.module";
 import {NavComponent} from "./components/nav/nav.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { ArtistComponent } from './components/artist/artist.component';
+import { ArtistDetailsComponent } from './components/artist-details/artist-details.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import {HttpClientModule} from "@angular/common/http";
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    NavComponent
+    NavComponent,
+    ArtistComponent,
+    ArtistDetailsComponent
   ],
   imports: [
     BrowserModule,

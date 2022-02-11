@@ -13,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/artist")
+@CrossOrigin("*")
 class ArtistController {
     private final ArtistComponent artistComponent;
 
