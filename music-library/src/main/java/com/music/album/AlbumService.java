@@ -25,4 +25,9 @@ class AlbumService {
         return albumRepository.getOptional(id)
                 .orElseThrow(() -> new EntityNotFoundException("There is no artist with such Id"));
     }
+
+    List<AlbumDetailsResponseDto> getByArtistId(Long id)
+    {
+        return albumRepository.getByArtistId(id);
+    }
 }

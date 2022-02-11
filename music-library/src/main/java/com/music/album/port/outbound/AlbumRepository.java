@@ -13,4 +13,5 @@ public interface AlbumRepository {
     AlbumResponseDto add(AlbumRequestDto albumRequestDto);
     Optional<AlbumDetailsResponseDto> getOptional(Long id);
     List<TrackDetailsDto> getTrackList(Long id);
+    List<AlbumDetailsResponseDto> getByArtistId(Long id);
 }

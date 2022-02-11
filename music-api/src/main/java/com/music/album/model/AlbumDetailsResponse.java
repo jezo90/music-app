@@ -5,5 +5,6 @@ import java.util.Date;
 public record AlbumDetailsResponse(
         String cdName,
         Date releaseDate,
-        String author) {
+        String author,
+        String image) {
 }

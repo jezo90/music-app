@@ -25,5 +25,10 @@ class AlbumFacade implements AlbumComponent {
         return albumService.get(id);
     }
 
+    @Override
+    public List<AlbumDetailsResponseDto> getByArtistId(Long id) {
+        return albumService.getByArtistId(id);
+    }
+
 
 }

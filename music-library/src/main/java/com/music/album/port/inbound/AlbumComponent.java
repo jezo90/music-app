@@ -10,4 +10,5 @@ public interface AlbumComponent {
     List<AlbumResponseDto> getAll();
     AlbumResponseDto add(AlbumRequestDto albumRequestDto);
     AlbumDetailsResponseDto get(Long id);
+    List<AlbumDetailsResponseDto> getByArtistId(Long id);
 }

@@ -33,6 +33,7 @@ public class AlbumEntityMapper {
         ArtistEntity artistEntity = new ArtistEntity();
         artistEntity.setId(albumRequestDto.artistId());
         albumEntity.setArtistEntity(artistEntity);
+        albumEntity.setImage(albumEntity.getImage());
 
         return albumEntity;
     }
@@ -41,7 +42,8 @@ public class AlbumEntityMapper {
         return new AlbumDetailsResponseDto(
                 albumEntity.getCdName(),
                 albumEntity.getReleaseDate(),
-                albumEntity.getArtistEntity().getNickname()
+                albumEntity.getArtistEntity().getNickname(),
+                albumEntity.getImage()
         );
     }
 

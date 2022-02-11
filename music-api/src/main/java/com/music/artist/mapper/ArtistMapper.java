@@ -16,7 +16,8 @@ public class ArtistMapper {
                 artistResponseDto.nickname(),
                 artistResponseDto.firstName(),
                 artistResponseDto.lastName(),
-                artistResponseDto.birthDate()
+                artistResponseDto.birthDate(),
+                artistResponseDto.image()
         );
     }
 

@@ -40,5 +40,11 @@ class AlbumController {
                         albumComponent.get(id)));
     }
 
+    @GetMapping("/byArtistId/{id}")
+    ResponseEntity<List<AlbumDetailsResponse>> getByArtistId(@PathVariable Long id) {
+        return ResponseEntity.ok(
+                AlbumMapper.mapToDetails(
+                        albumComponent.getByArtistId(id)));
+    }
 
 }

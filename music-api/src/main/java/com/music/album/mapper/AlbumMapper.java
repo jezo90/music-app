@@ -39,7 +39,15 @@ public class AlbumMapper {
         return new AlbumDetailsResponse(
                 albumDetailsResponseDto.cdName(),
                 albumDetailsResponseDto.releaseDate(),
-                albumDetailsResponseDto.author()
+                albumDetailsResponseDto.author(),
+                albumDetailsResponseDto.image()
         );
+    }
+
+    public static List<AlbumDetailsResponse> mapToDetails(List<AlbumDetailsResponseDto> albumDetailsResponseDtoList) {
+        return albumDetailsResponseDtoList
+                .stream()
+                .map(AlbumMapper::map)
+                .collect(Collectors.toList());
     }
 }
