@@ -19,6 +19,7 @@ public class AlbumEntity {
     private Long id;
     private String cdName;
     private Date releaseDate;
+    private String image;
 
     @ManyToOne
     @JoinColumn(name = "artist_id")

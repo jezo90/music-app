@@ -46,5 +46,12 @@ class AlbumAdapter implements AlbumRepository {
                 .orElseThrow(() -> new EntityNotFoundException("There is no album with such Id "));
     }
 
+    @Override
+    public List<AlbumDetailsResponseDto> getByArtistId(Long id) {
+        return albumSpringRepository.findAlbumEntitiesByArtistEntity_Id(id)
+                .stream().map(AlbumEntityMapper::mapToDetails).toList();
+
+    }
+
 
 }

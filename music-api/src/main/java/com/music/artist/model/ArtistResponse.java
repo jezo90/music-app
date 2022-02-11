@@ -7,6 +7,7 @@ public record ArtistResponse(
         String nickname,
         String firstName,
         String lastName,
-        Date birthDate
+        Date birthDate,
+        String image
 ) {
 }

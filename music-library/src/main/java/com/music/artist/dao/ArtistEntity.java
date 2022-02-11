@@ -20,6 +20,7 @@ public class ArtistEntity {
     private String firstName;
     private String lastName;
     private Date birthDate;
+    private String image;
 
     @OneToMany(mappedBy = "artistEntity")
     private List<AlbumEntity> albumList;
