@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ArtistService} from "../../services/artist/artist.service";
 import {ActivatedRoute} from "@angular/router";
 import {Artist} from "../../services/artist/artist";
+import {AlbumService} from "../../services/album/album.service";
+import {Album} from "../../services/album/album";
 
 @Component({
   selector: 'app-artist-details',
@@ -12,25 +14,45 @@ export class ArtistDetailsComponent implements OnInit {
 
   private artistId: number = 0;
   private newDate: Date | undefined;
-  public artist: Artist = new Artist(0, '', '', '', 0);
+  public artist: Artist = new Artist(0, '', '', '', 0, '');
+  public albums : Array<Album> = []
 
   constructor(private artistService: ArtistService,
+              private albumService: AlbumService,
               private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     // @ts-ignore
     this.artistId = +this.route.snapshot.paramMap.get('id');
-    this.artistService.getArtistById(this.artistId).subscribe(
+    this.getArtistDetails(this.artistId);
+    this.getAlbumsByArtistId(this.artistId);
+  }
+
+  getArtistDetails(id: any): void
+  {
+    this.artistService.getArtistById(id).subscribe(
       data => {
-        this.responseToObject(data);
+        this.responseToArtist(data);
       }
     );
   }
 
-  responseToObject(artistData: any) {
+  getAlbumsByArtistId(id: any) : void
+  {
+    this.albumService.getAlbumsByArtistId(id).subscribe(
+      data => {
+        this.responseToAlbums(data);
+      }
+    );
+  }
+
+  responseToArtist(artistData: any) {
     this.artist = artistData;
-    console.log(artistData);
+  }
+
+  responseToAlbums(albumsData: any) {
+    this.albums = albumsData;
   }
 
   convertToDate(date: any)

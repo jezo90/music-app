@@ -2,20 +2,30 @@
   <div class="row">
 
     <div class="col-md-auto">
-
-      <img src="https://solisradius.pl/wp-content/uploads/2021/04/person-icon.png">
-
+      <img src="{{this.artist.image}}">
     </div>
 
     <div class="col m-5">
-
       <h1> <b> {{this.artist.nickname.toUpperCase()}}  </b> </h1>
       <h4> {{this.artist.firstName}} {{this.artist.lastName}} </h4><br/>
       {{this.convertToDate(this.artist.birthDate) | date:'longDate'}}
-
     </div>
 
   </div>
+
+  <div class="row" *ngFor="let tempAlbum of this.albums">
+
+    <div class="col-md-auto">
+      <img src="{{this.tempAlbum.image}}">
+    </div>
+
+    <div class="col m-5">
+      <h1> <b> {{this.tempAlbum.cdName.toUpperCase()}}  </b> </h1>
+      <h4> {{this.convertToDate(this.tempAlbum.releaseDate) | date:'longDate'}} </h4><br/>
+    </div>
+
+  </div>
+
 
 </div>
 
