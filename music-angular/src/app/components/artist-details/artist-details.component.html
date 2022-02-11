@@ -1,8 +1,22 @@
-<div>
-  <p>
-    TEST
-    {{this.artist.nickname}} <br/>
-    {{this.artist.firstName}} {{this.artist.lastName}} <br/>
-    {{this.artist.birthDate}}
-  </p>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-auto">
+
+      <img src="https://solisradius.pl/wp-content/uploads/2021/04/person-icon.png">
+
+    </div>
+
+    <div class="col m-5">
+
+      <h1> <b> {{this.artist.nickname.toUpperCase()}}  </b> </h1>
+      <h4> {{this.artist.firstName}} {{this.artist.lastName}} </h4><br/>
+      {{this.convertToDate(this.artist.birthDate) | date:'longDate'}}
+
+    </div>
+
+  </div>
+
 </div>
+
+

@@ -11,6 +11,7 @@ import {Artist} from "../../services/artist/artist";
 export class ArtistDetailsComponent implements OnInit {
 
   private artistId: number = 0;
+  private newDate: Date | undefined;
   public artist: Artist = new Artist(0, '', '', '', 0);
 
   constructor(private artistService: ArtistService,
@@ -30,6 +31,12 @@ export class ArtistDetailsComponent implements OnInit {
   responseToObject(artistData: any) {
     this.artist = artistData;
     console.log(artistData);
+  }
+
+  convertToDate(date: any)
+  {
+    this.newDate = new Date(date);
+    return this.newDate;
   }
 
 }

@@ -1,10 +1,27 @@
-<div *ngFor="let tempArtist of this.artists">
+<div class="container">
+  <div class="row">
 
-  <a routerLink="/artist/{{tempArtist.id}}">
-    <p>
-      {{tempArtist.nickname}} <br/>
-      {{tempArtist.firstName}} {{tempArtist.lastName}} <br/>
-      {{tempArtist.birthDate}}
-    </p>
-  </a>
+    <div class="col" *ngFor="let tempArtist of this.artists">
+
+
+      <div class="fill"
+           style="background-image: url('https://solisradius.pl/wp-content/uploads/2021/04/person-icon.png');">
+        <p>
+          <br/><br/><br/><br/><br/><br/>
+          <a routerLink="/artist/{{tempArtist.id}}">
+            <b>{{tempArtist.nickname.toUpperCase()}} <br/>
+              {{tempArtist.firstName}} {{tempArtist.lastName}}
+            </b>
+            <br/>
+          </a>
+        </p>
+      </div>
+
+
+    </div>
+
+  </div>
+
 </div>
+
+
