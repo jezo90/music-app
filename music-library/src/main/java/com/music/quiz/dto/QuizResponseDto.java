@@ -2,6 +2,7 @@ package com.music.quiz.dto;
 
 
 public record QuizResponseDto(
+        Long userId,
         Long quizId,
         String firstTrackTitle,
         Long firstTrackId,

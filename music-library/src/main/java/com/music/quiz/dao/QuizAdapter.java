@@ -1,5 +1,6 @@
 package com.music.quiz.dao;
 
+import com.music.quiz.dto.AnswerRequestDto;
 import com.music.quiz.dto.QuizCreateDto;
 import com.music.quiz.dto.QuizResponseDto;
 import com.music.quiz.port.outbound.QuizRepository;
@@ -30,6 +31,20 @@ class QuizAdapter implements QuizRepository {
         refresh(quizEntity);
         return QuizEntityMapper.map(quizEntity);
     }
+
+    @Override
+    public QuizEntity getQuizEntity(Long id) {
+        return quizSpringRepository.getById(id);
+    }
+
+    @Override
+    public QuizResponseDto updateAnswer(QuizEntity quizEntity) {
+        quizSpringRepository.save(quizEntity);
+
+        return QuizEntityMapper.map(quizEntity);
+    }
+
+
 
 
 }

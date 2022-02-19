@@ -37,6 +37,7 @@ public class AlbumMapper {
 
     public static AlbumDetailsResponse map(AlbumDetailsResponseDto albumDetailsResponseDto) {
         return new AlbumDetailsResponse(
+                albumDetailsResponseDto.id(),
                 albumDetailsResponseDto.cdName(),
                 albumDetailsResponseDto.releaseDate(),
                 albumDetailsResponseDto.author(),
