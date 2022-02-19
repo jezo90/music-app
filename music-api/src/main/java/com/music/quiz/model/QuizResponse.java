@@ -1,6 +1,7 @@
 package com.music.quiz.model;
 
 public record QuizResponse(
+        Long userId,
         Long quizId,
         String firstTrackTitle,
         Long firstTrackId,

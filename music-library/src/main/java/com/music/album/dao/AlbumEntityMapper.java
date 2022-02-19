@@ -40,6 +40,7 @@ public class AlbumEntityMapper {
 
     public static AlbumDetailsResponseDto mapToDetails(AlbumEntity albumEntity) {
         return new AlbumDetailsResponseDto(
+                albumEntity.getId(),
                 albumEntity.getCdName(),
                 albumEntity.getReleaseDate(),
                 albumEntity.getArtistEntity().getNickname(),

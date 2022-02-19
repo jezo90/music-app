@@ -3,12 +3,17 @@ package com.music.quiz.dao;
 import com.music.quiz.dto.QuizCreateDto;
 import com.music.quiz.dto.QuizResponseDto;
 import com.music.track.dao.TrackEntity;
+import com.music.user.dao.UserEntity;
 
 
 public class QuizEntityMapper {
 
     public static QuizEntity map(QuizCreateDto quizCreateDto) {
         QuizEntity quizEntity = new QuizEntity();
+
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(quizCreateDto.userId());
+
         TrackEntity trackEntity1 = new TrackEntity();
         trackEntity1.setId(quizCreateDto.firstTrackEntity());
 
@@ -18,6 +23,7 @@ public class QuizEntityMapper {
         TrackEntity trackEntity3 = new TrackEntity();
         trackEntity3.setId(quizCreateDto.thirdTrackEntity());
 
+        quizEntity.setUserEntity(userEntity);
         quizEntity.setTrackEntity1(trackEntity1);
         quizEntity.setTrackEntity2(trackEntity2);
         quizEntity.setTrackEntity3(trackEntity3);
@@ -31,6 +37,7 @@ public class QuizEntityMapper {
 
     public static QuizResponseDto map(QuizEntity quizEntity) {
         return new QuizResponseDto(
+                quizEntity.getUserEntity().getId(),
                 quizEntity.getId(),
                 quizEntity.getTrackEntity1().getTitle(),
                 quizEntity.getTrackEntity1().getId(),

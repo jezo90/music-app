@@ -3,6 +3,8 @@ package com.music.quiz;
 import com.music.album.dto.TrackDetailsDto;
 import com.music.album.port.outbound.AlbumRepository;
 import com.music.artist.port.outbound.ArtistRepository;
+import com.music.quiz.dao.QuizEntity;
+import com.music.quiz.dto.AnswerRequestDto;
 import com.music.quiz.dto.QuizCreateDto;
 import com.music.quiz.dto.QuizRequestDto;
 import com.music.quiz.dto.QuizResponseDto;
@@ -35,6 +37,7 @@ class QuizService {
         TrackDetailsDto chosenTrack = trackList.get(randomTrack);
 
         QuizCreateDto quizCreateDto = new QuizCreateDto(
+                quizRequestDto.userId(),
                 trackList.get(0).id(),
                 trackList.get(1).id(),
                 trackList.get(2).id(),
@@ -54,6 +57,14 @@ class QuizService {
             chosenText.append(words[i]).append(" ");
         }
         return chosenText.toString();
+    }
+
+    public QuizResponseDto updateAnswer(AnswerRequestDto answerRequestDto) {
+
+        QuizEntity quiz = quizRepository.getQuizEntity(answerRequestDto.quizId());
+        quiz.setChosenAnswer(answerRequestDto.userAnswer());
+
+        return quizRepository.updateAnswer(quiz);
     }
 
 }
