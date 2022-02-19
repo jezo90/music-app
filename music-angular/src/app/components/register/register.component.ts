@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
 
   save(data: any) {
     this.tokenStorage.signIn(data);
-    console.log(this.tokenStorage.getToken());
   }
 
 }

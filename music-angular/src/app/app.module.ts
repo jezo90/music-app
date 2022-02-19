@@ -11,6 +11,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ArtistComponent } from './components/artist/artist.component';
 import { ArtistDetailsComponent } from './components/artist-details/artist-details.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { ArtistDetailsComponent } from './components/artist-details/artist-detai
     RegisterComponent,
     NavComponent,
     ArtistComponent,
-    ArtistDetailsComponent
+    ArtistDetailsComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
