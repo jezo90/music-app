@@ -1,27 +1,18 @@
-<div class="container">
-  <div class="row">
+<div class="container" *ngFor="let tempArtist of this.artists">
 
-    <div class="col" *ngFor="let tempArtist of this.artists">
+  <a routerLink="/artist/{{tempArtist.id}}">
+  <div class="artist" style='background-image: url("{{tempArtist.image}}")'>
 
-
-      <div class="fill"
-           style="background-image: url('{{tempArtist.image}}');">
-        <p>
-          <br/><br/><br/><br/><br/><br/>
-          <a routerLink="/artist/{{tempArtist.id}}">
-            <b>{{tempArtist.nickname.toUpperCase()}} <br/>
-              {{tempArtist.firstName}} {{tempArtist.lastName}}
-            </b>
-            <br/>
-          </a>
-        </p>
-      </div>
-
-
+    <div class="text-box">
+      <b>{{tempArtist.nickname.toUpperCase()}}</b>
+    <br/>
     </div>
 
   </div>
+  </a>
+
 
 </div>
+
 
 
