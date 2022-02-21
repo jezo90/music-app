@@ -21,7 +21,7 @@ class QuizService {
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
 
-    public QuizResponseDto createQuiz(QuizRequestDto quizRequestDto) {
+    public Long createQuiz(QuizRequestDto quizRequestDto) {
 
         Random random = new Random();
         int randomTrack = random.nextInt(3);
@@ -66,5 +66,11 @@ class QuizService {
 
         return quizRepository.updateAnswer(quiz);
     }
+
+    public QuizResponseDto getById(Long id) {
+
+        return quizRepository.getById(id);
+    }
+
 
 }

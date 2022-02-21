@@ -5,6 +5,7 @@ import com.music.quiz.dto.QuizRequestDto;
 import com.music.quiz.dto.QuizResponseDto;
 
 public interface QuizComponent {
-    QuizResponseDto createQuiz(QuizRequestDto quizRequestDto);
+    Long createQuiz(QuizRequestDto quizRequestDto);
     QuizResponseDto updateAnswer(AnswerRequestDto answerRequestDto);
+    QuizResponseDto getById(Long id);
 }

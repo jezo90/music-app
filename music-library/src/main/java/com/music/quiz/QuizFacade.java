@@ -11,12 +11,18 @@ class QuizFacade implements QuizComponent {
     private final QuizService quizService;
 
     @Override
-    public QuizResponseDto createQuiz(QuizRequestDto quizRequestDto) {
+    public Long createQuiz(QuizRequestDto quizRequestDto) {
+
         return quizService.createQuiz(quizRequestDto);
     }
 
     @Override
     public QuizResponseDto updateAnswer(AnswerRequestDto answerRequestDto) {
         return quizService.updateAnswer(answerRequestDto);
+    }
+
+    @Override
+    public QuizResponseDto getById(Long id) {
+        return quizService.getById(id);
     }
 }

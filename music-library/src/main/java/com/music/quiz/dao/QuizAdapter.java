@@ -24,12 +24,12 @@ class QuizAdapter implements QuizRepository {
 
     @Override
     @Transactional
-    public QuizResponseDto createQuiz(QuizCreateDto quizCreateDto) {
+    public Long createQuiz(QuizCreateDto quizCreateDto) {
 
         QuizEntity quizEntity = quizSpringRepository.save(
                 QuizEntityMapper.map(quizCreateDto));
         refresh(quizEntity);
-        return QuizEntityMapper.map(quizEntity);
+        return quizEntity.getId();
     }
 
     @Override
@@ -44,7 +44,11 @@ class QuizAdapter implements QuizRepository {
         return QuizEntityMapper.map(quizEntity);
     }
 
-
+    @Override
+    public QuizResponseDto getById(Long id) {
+        return QuizEntityMapper.map(
+                quizSpringRepository.getById(id));
+    }
 
 
 }

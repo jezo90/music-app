@@ -17,11 +17,11 @@ public class QuizController {
     private final QuizComponent quizComponent;
 
     @PostMapping
-    ResponseEntity<QuizResponse> createQuiz(@RequestBody QuizRequest quizRequest) {
+    ResponseEntity<Long> createQuiz(@RequestBody QuizRequest quizRequest) {
+
         return ResponseEntity.ok(
-                QuizMapper.map(
-                        quizComponent.createQuiz(
-                                QuizMapper.map(quizRequest))));
+                quizComponent.createQuiz(
+                        QuizMapper.map(quizRequest)));
     }
 
     @PutMapping("/answer")
@@ -32,4 +32,14 @@ public class QuizController {
                                 QuizMapper.map(answerRequest))));
 
     }
+
+    @GetMapping("/{id}")
+    ResponseEntity<QuizResponse> get(@PathVariable Long id) {
+        return ResponseEntity.ok(
+                QuizMapper.map(
+                        quizComponent.getById(id)));
+
+    }
+
+
 }
