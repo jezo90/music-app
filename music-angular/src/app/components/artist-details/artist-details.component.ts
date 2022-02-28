@@ -70,11 +70,10 @@ export class ArtistDetailsComponent implements OnInit {
   }
 
   createQuiz(albumId: number, numberOfWords: number) {
-    this.quizRequest = new QuizRequest(1, albumId, 0, numberOfWords);
+    this.quizRequest = new QuizRequest(albumId, 0, numberOfWords);
     this.quizService.genetareQuiz(this.quizRequest).subscribe(
       data => {
-        this.responseToQuiz(data);
-        this.router.navigate(['/quiz/' + this.quizId ] ).then(r => r);
+        this.router.navigateByUrl('/quiz').then(r => r);
       }
     );
   }
