@@ -26,7 +26,7 @@ public class QuizController {
                                 QuizMapper.map(quizRequest))));
     }
 
-    @PostMapping
+    @PostMapping("/addQuiz")
     ResponseEntity<Long> AddQuiz(@RequestBody QuizSave quizSave)
     {
         return ResponseEntity.ok(
