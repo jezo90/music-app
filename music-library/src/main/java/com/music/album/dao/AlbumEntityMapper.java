@@ -55,6 +55,7 @@ public class AlbumEntityMapper {
                 .map(trackEntity ->
                              new TrackDetailsDto(
                                      trackEntity.getId(),
+                                     trackEntity.getTitle(),
                                      trackEntity.getText()
                              )).collect(Collectors.toList());
 

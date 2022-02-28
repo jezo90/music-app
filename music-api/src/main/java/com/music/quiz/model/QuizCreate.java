@@ -1,6 +1,6 @@
-package com.music.quiz.dto;
+package com.music.quiz.model;
 
-public record QuizCreateDto(
+public record QuizCreate(
         Long firstTrackId,
         String firstTrackTitle,
         Long secondTrackId,

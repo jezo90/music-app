@@ -3,8 +3,7 @@ package com.music.quiz;
 import com.music.album.dto.TrackDetailsDto;
 import com.music.album.port.outbound.AlbumRepository;
 import com.music.artist.port.outbound.ArtistRepository;
-import com.music.quiz.dao.QuizEntity;
-import com.music.quiz.dto.AnswerRequestDto;
+import com.music.quiz.dao.QuizSaveDto;
 import com.music.quiz.dto.QuizCreateDto;
 import com.music.quiz.dto.QuizRequestDto;
 import com.music.quiz.dto.QuizResponseDto;
@@ -21,7 +20,7 @@ class QuizService {
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
 
-    public Long createQuiz(QuizRequestDto quizRequestDto) {
+    public QuizCreateDto createQuiz(QuizRequestDto quizRequestDto) {
 
         Random random = new Random();
         int randomTrack = random.nextInt(3);
@@ -36,17 +35,17 @@ class QuizService {
 
         TrackDetailsDto chosenTrack = trackList.get(randomTrack);
 
-        QuizCreateDto quizCreateDto = new QuizCreateDto(
-                quizRequestDto.userId(),
+
+        return new QuizCreateDto(
                 trackList.get(0).id(),
+                trackList.get(0).title(),
                 trackList.get(1).id(),
+                trackList.get(1).title(),
                 trackList.get(2).id(),
+                trackList.get(3).title(),
                 getWords(chosenTrack, random, quizRequestDto.numberOfWords()),
                 chosenTrack.id()
         );
-
-
-        return quizRepository.createQuiz(quizCreateDto);
     }
 
     private String getWords(TrackDetailsDto trackDetailsDto, Random random, int numberOfWords) {
@@ -59,12 +58,8 @@ class QuizService {
         return chosenText.toString();
     }
 
-    public QuizResponseDto updateAnswer(AnswerRequestDto answerRequestDto) {
-
-        QuizEntity quiz = quizRepository.getQuizEntity(answerRequestDto.quizId());
-        quiz.setChosenAnswer(answerRequestDto.userAnswer());
-
-        return quizRepository.updateAnswer(quiz);
+    public Long addQuiz(QuizSaveDto quizSaveDto) {
+        return quizRepository.addQuiz(quizSaveDto);
     }
 
     public QuizResponseDto getById(Long id) {
