@@ -48,12 +48,12 @@ class QuizService {
         );
     }
 
-    private String getWords(TrackDetailsDto trackDetailsDto, Random random, int numberOfWords) {
+    private String getWords(TrackDetailsDto trackDetailsDto, Random random, Long numberOfWords) {
         String[] words = trackDetailsDto.text().split("\\s");
         StringBuilder chosenText = new StringBuilder();
-        int randomWord = random.nextInt(words.length - numberOfWords - 1);
-        for (int i = randomWord; i < randomWord + numberOfWords; i++) {
-            chosenText.append(words[i]).append(" ");
+        Long randomWord = random.nextLong(words.length - numberOfWords - 1);
+        for (Long i = randomWord; i < randomWord + numberOfWords; i++) {
+            chosenText.append(words[i.intValue()]).append(" ");
         }
         return chosenText.toString();
     }
