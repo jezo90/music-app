@@ -1,39 +1,12 @@
 package com.music.quiz.dao;
 
-import com.music.quiz.dto.QuizCreateDto;
 import com.music.quiz.dto.QuizResponseDto;
 import com.music.track.dao.TrackEntity;
 import com.music.user.dao.UserEntity;
 
+import java.util.Objects;
 
 public class QuizEntityMapper {
-
-    public static QuizEntity map(QuizCreateDto quizCreateDto) {
-        QuizEntity quizEntity = new QuizEntity();
-
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(quizCreateDto.userId());
-
-        TrackEntity trackEntity1 = new TrackEntity();
-        trackEntity1.setId(quizCreateDto.firstTrackEntity());
-
-        TrackEntity trackEntity2 = new TrackEntity();
-        trackEntity2.setId(quizCreateDto.secondTrackEntity());
-
-        TrackEntity trackEntity3 = new TrackEntity();
-        trackEntity3.setId(quizCreateDto.thirdTrackEntity());
-
-        quizEntity.setUserEntity(userEntity);
-        quizEntity.setTrackEntity1(trackEntity1);
-        quizEntity.setTrackEntity2(trackEntity2);
-        quizEntity.setTrackEntity3(trackEntity3);
-        quizEntity.setWords(quizCreateDto.words());
-        quizEntity.setCorrectAnswer(quizCreateDto.correctAnswer());
-        quizEntity.setChosenAnswer(0L);
-        quizEntity.setScore(0);
-
-        return quizEntity;
-    }
 
     public static QuizResponseDto map(QuizEntity quizEntity) {
         return new QuizResponseDto(
@@ -47,6 +20,36 @@ public class QuizEntityMapper {
                 quizEntity.getTrackEntity3().getId(),
                 quizEntity.getWords()
         );
+    }
+
+    public static QuizEntity map(QuizSaveDto quizSaveDto) {
+        QuizEntity quizEntity = new QuizEntity();
+
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(quizSaveDto.userId());
+
+        TrackEntity firstTrackEntity = new TrackEntity();
+        firstTrackEntity.setId(quizSaveDto.firstTrackId());
+
+        TrackEntity secondTrackEntity = new TrackEntity();
+        secondTrackEntity.setId(quizSaveDto.secondTrackId());
+
+        TrackEntity thirdTrackEntity = new TrackEntity();
+        thirdTrackEntity.setId(quizSaveDto.thirdTrackId());
+
+        quizEntity.setUserEntity(userEntity);
+        quizEntity.setTrackEntity1(firstTrackEntity);
+        quizEntity.setTrackEntity2(secondTrackEntity);
+        quizEntity.setTrackEntity3(thirdTrackEntity);
+        quizEntity.setWords(quizSaveDto.words());
+        quizEntity.setCorrectAnswer(quizSaveDto.correctAnswerId());
+        quizEntity.setChosenAnswer(quizSaveDto.chosenAnswerId());
+        if (Objects.equals(quizSaveDto.chosenAnswerId(), quizSaveDto.correctAnswerId()))
+            quizEntity.setScore(1);
+        else
+            quizEntity.setScore(0);
+
+        return quizEntity;
     }
 
 }

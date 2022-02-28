@@ -58,6 +58,7 @@ class ArtistAdapter implements ArtistRepository {
                         .stream()
                         .map(trackEntity -> new TrackDetailsDto(
                                 trackEntity.getId(),
+                                trackEntity.getTitle(),
                                 trackEntity.getText()
                         )))
                 .collect(Collectors.toList());
