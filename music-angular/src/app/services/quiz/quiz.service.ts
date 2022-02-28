@@ -13,7 +13,8 @@ export class QuizService {
 
   constructor(private http: HttpClient) { }
 
-  genetareQuiz(quizRequest : QuizRequest){
-    return this.http.post(AUTH_API, quizRequest);
+  generateQuiz(quizRequest : QuizRequest){
+    // @ts-ignore
+    return this.http.get(AUTH_API, quizRequest);
   }
 }

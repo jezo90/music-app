@@ -71,7 +71,7 @@ export class ArtistDetailsComponent implements OnInit {
 
   createQuiz(albumId: number, numberOfWords: number) {
     this.quizRequest = new QuizRequest(albumId, 0, numberOfWords);
-    this.quizService.genetareQuiz(this.quizRequest).subscribe(
+    this.quizService.generateQuiz(this.quizRequest).subscribe(
       data => {
         this.router.navigateByUrl('/quiz').then(r => r);
       }
