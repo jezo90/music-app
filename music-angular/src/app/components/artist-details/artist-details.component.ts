@@ -5,8 +5,6 @@ import {Artist} from "../../services/artist/artist";
 import {AlbumService} from "../../services/album/album.service";
 import {Album} from "../../services/album/album";
 import {QuizService} from "../../services/quiz/quiz.service";
-import {QuizRequest} from "../../services/quiz/quiz-request";
-import {Quiz} from "../../services/quiz/quiz";
 
 @Component({
   selector: 'app-artist-details',
@@ -17,14 +15,12 @@ export class ArtistDetailsComponent implements OnInit {
 
   private artistId: number = 0;
   private newDate: Date | undefined;
-  private quizRequest: QuizRequest | undefined;
   public quizId: string = "";
   public artist: Artist = new Artist(0, '', '', '', 0, '');
   public albums: Array<Album> = []
 
   constructor(private artistService: ArtistService,
               private albumService: AlbumService,
-              private quizService: QuizService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -60,22 +56,22 @@ export class ArtistDetailsComponent implements OnInit {
     this.albums = albumsData;
   }
 
-  responseToQuiz(quizData: any) {
-    this.quizId = quizData;
-  }
 
   convertToDate(date: any) {
     this.newDate = new Date(date);
     return this.newDate;
   }
 
-  createQuiz(albumId: number, numberOfWords: number) {
-    this.quizRequest = new QuizRequest(albumId, 0, numberOfWords);
-    this.quizService.generateQuiz(this.quizRequest).subscribe(
-      data => {
-        this.router.navigateByUrl('/quiz').then(r => r);
-      }
-    );
+  createQuiz(albumId: number, artistId: number, numberOfWords: number) {
+
+    this.router.navigate(['/quiz'],
+      {
+        queryParams: {
+          albumId,
+          artistId,
+          numberOfWords
+        }
+      }).then(r => r);
   }
 
 }
