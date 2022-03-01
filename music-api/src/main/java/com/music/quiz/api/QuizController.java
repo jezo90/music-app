@@ -18,8 +18,11 @@ public class QuizController {
     private final QuizComponent quizComponent;
 
     @GetMapping
-    ResponseEntity<QuizCreate> createQuiz(@RequestBody QuizRequest quizRequest) {
+    ResponseEntity<QuizCreate> createQuiz(@RequestParam Long albumId,
+                                          @RequestParam Long artistId,
+                                          @RequestParam Long numberOfWords) {
 
+        QuizRequest quizRequest = new QuizRequest(albumId, artistId, numberOfWords);
         return ResponseEntity.ok(
                 QuizMapper.map(
                         quizComponent.createQuiz(
