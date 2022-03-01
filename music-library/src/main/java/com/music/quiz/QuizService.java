@@ -52,8 +52,8 @@ class QuizService {
         String[] words = trackDetailsDto.text().split("\\s");
         StringBuilder chosenText = new StringBuilder();
         Long randomWord = random.nextLong(words.length - numberOfWords - 1);
-        for (Long i = randomWord; i < randomWord + numberOfWords; i++) {
-            chosenText.append(words[i.intValue()]).append(" ");
+        for (int i = randomWord.intValue(); i < randomWord + numberOfWords; i++) {
+            chosenText.append(words[i]).append(" ");
         }
         return chosenText.toString();
     }
