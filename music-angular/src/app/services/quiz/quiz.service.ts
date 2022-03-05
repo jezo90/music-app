@@ -25,8 +25,6 @@ export class QuizService {
       .set('artistId', quizRequest.artistId)
       .set('numberOfWords', quizRequest.numberOfWords);
 
-    console.log("Test " + quizRequest.numberOfWords);
-
     return this.http.get<Quiz>(AUTH_API, {params}).pipe(
       catchError(this.handleError<Quiz>(`album id=${quizRequest.albumId}`))
     );
@@ -43,6 +41,8 @@ export class QuizService {
   }
 
   addQuiz(quizSave: QuizSave): Observable<number> {
+
+    console.log(quizSave.username);
     return this.http.post<number>(AUTH_API + "/addQuiz", quizSave).pipe(
       catchError(this.handleError<number>(`chosenAnswerId=${quizSave.chosenAnswerId}`))
     );

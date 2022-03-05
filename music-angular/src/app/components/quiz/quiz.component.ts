@@ -22,7 +22,7 @@ export class QuizComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private quizService: QuizService,
-              private token: TokenStorageService
+              private tokenStorage: TokenStorageService
   ) {
   }
 
@@ -48,8 +48,13 @@ export class QuizComponent implements OnInit {
   }
 
   addQuiz(trackId: number) {
+    console.log("token: " + this.tokenStorage.getToken());
+    console.log("username " + this.tokenStorage.getUsernameString());
+    console.log("role " + this.tokenStorage.getRoles());
+
+
     this.quizSave = new QuizSave(
-      this.token.getUsernameString(),
+      this.tokenStorage.getUsernameString(),
       this.quiz.firstTrackId,
       this.quiz.secondTrackId,
       this.quiz.thirdTrackId,
