@@ -10,15 +10,15 @@
 
   <div class="row">
 
-    <div class="col">
+    <div class="col" (click)="addQuiz(this.quiz.firstTrackId)">
       {{this.quiz.firstTrackTitle}}
     </div>
 
-    <div class="col">
+    <div class="col" (click)="addQuiz(this.quiz.secondTrackId)">
       {{this.quiz.secondTrackTitle}}
     </div>
 
-    <div class="col">
+    <div class="col" (click)="addQuiz(this.quiz.thirdTrackId)">
       {{this.quiz.thirdTrackTitle}}
     </div>
 

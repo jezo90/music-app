@@ -6,6 +6,7 @@ import {Token} from "./token";
 const TOKEN_KEY = 'token';
 const USERNAME_KEY = 'username';
 const ROLES_KEY = 'roles';
+const USER_ID = "0";
 
 
 @Injectable({
@@ -27,9 +28,11 @@ export class TokenStorageService {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.removeItem(ROLES_KEY);
+    window.sessionStorage.removeItem(USER_ID);
     window.sessionStorage.setItem(USERNAME_KEY, token.username);
     window.sessionStorage.setItem(TOKEN_KEY, token.token);
     window.sessionStorage.setItem(ROLES_KEY, token.roles);
+    window.sessionStorage.setItem(USER_ID, String(+token.id));
     this.isLogged = true;
   }
 
@@ -39,6 +42,10 @@ export class TokenStorageService {
 
   public getUsername() {
     return JSON.parse(<string>window.sessionStorage.getItem(USERNAME_KEY));
+  }
+
+  public getId(): number{
+    return Number(window.sessionStorage.getItem(USER_ID));
   }
 
   public getRoles() {

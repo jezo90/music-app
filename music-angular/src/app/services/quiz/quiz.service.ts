@@ -4,6 +4,7 @@ import {Quiz} from "./quiz";
 import {QuizRequest} from "./quiz-request";
 import {catchError, Observable, of} from "rxjs";
 import {Artist} from "../artist/artist";
+import {QuizSave} from "./quiz-save";
 
 
 const AUTH_API = 'http://localhost:9192/quiz';
@@ -39,6 +40,12 @@ export class QuizService {
 
       return of(result as T);
     };
+  }
+
+  addQuiz(quizSave: QuizSave) {
+    return this.http.post<number>(AUTH_API + "/addQuiz", quizSave).pipe(
+      catchError(this.handleError<Quiz>(`chosenAnswerId=${quizSave.chosenAnswerId}`))
+    );
   }
 
 }
