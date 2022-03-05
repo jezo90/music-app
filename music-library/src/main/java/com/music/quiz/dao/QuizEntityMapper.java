@@ -26,7 +26,7 @@ public class QuizEntityMapper {
         QuizEntity quizEntity = new QuizEntity();
 
         UserEntity userEntity = new UserEntity();
-        userEntity.setId(quizSaveDto.userId());
+        userEntity.setUsername(quizSaveDto.username());
 
         TrackEntity firstTrackEntity = new TrackEntity();
         firstTrackEntity.setId(quizSaveDto.firstTrackId());
