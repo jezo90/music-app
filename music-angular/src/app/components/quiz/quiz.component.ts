@@ -25,7 +25,7 @@ export class QuizComponent implements OnInit {
 
     this.quizRequest.artistId = Number(this.route.snapshot.queryParamMap.get('artistId'));
     this.quizRequest.albumId = Number(this.route.snapshot.queryParamMap.get('albumId'));
-    this.quizRequest.numberOfWords = Number(this.route.snapshot.queryParamMap.get('numbersOfWords'));
+    this.quizRequest.numberOfWords = Number(this.route.snapshot.queryParamMap.get('numberOfWords'));
 
     this.quizService.generateQuiz(this.quizRequest).subscribe(
       data => {
