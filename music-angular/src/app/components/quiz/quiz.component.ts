@@ -15,7 +15,8 @@ export class QuizComponent implements OnInit {
 
   public quiz: Quiz = new Quiz(0, '', 0, '', 0, '', '', 0);
   private quizRequest: QuizRequest = new QuizRequest(0, 0, 0);
-  private quizSave: QuizSave = new QuizSave(0, 0, 0,0,"",0,0);
+  private quizSave: QuizSave = new QuizSave("", 0, 0,0,"",0,0);
+  private quizId = 0;
 
 
   constructor(private router: Router,
@@ -42,15 +43,27 @@ export class QuizComponent implements OnInit {
     this.quiz = quizData;
   }
 
+  responseToNumber(data: number) {
+    this.quizId = data;
+  }
+
   addQuiz(trackId: number) {
     this.quizSave = new QuizSave(
-      this.token.getUsername(),
+      this.token.getUsernameString(),
       this.quiz.firstTrackId,
       this.quiz.secondTrackId,
       this.quiz.thirdTrackId,
       this.quiz.words,
       this.quiz.correctAnswerId,
       trackId);
+
+    this.quizService.addQuiz(this.quizSave).subscribe(
+      data => {
+        this.responseToNumber(data);
+      }
+    );
+
+
   }
 
 }

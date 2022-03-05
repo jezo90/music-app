@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Quiz} from "./quiz";
 import {QuizRequest} from "./quiz-request";
 import {catchError, Observable, of} from "rxjs";
-import {Artist} from "../artist/artist";
 import {QuizSave} from "./quiz-save";
 
 
@@ -16,9 +15,10 @@ export class QuizService {
 
   error: any = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  generateQuiz(quizRequest : QuizRequest): Observable<Quiz>{
+  generateQuiz(quizRequest: QuizRequest): Observable<Quiz> {
 
     const params = new HttpParams()
       .set('albumId', quizRequest.albumId)
@@ -27,7 +27,7 @@ export class QuizService {
 
     console.log("Test " + quizRequest.numberOfWords);
 
-    return this.http.get<Quiz>(AUTH_API, { params }).pipe(
+    return this.http.get<Quiz>(AUTH_API, {params}).pipe(
       catchError(this.handleError<Quiz>(`album id=${quizRequest.albumId}`))
     );
   }
@@ -42,9 +42,9 @@ export class QuizService {
     };
   }
 
-  addQuiz(quizSave: QuizSave) {
+  addQuiz(quizSave: QuizSave): Observable<number> {
     return this.http.post<number>(AUTH_API + "/addQuiz", quizSave).pipe(
-      catchError(this.handleError<Quiz>(`chosenAnswerId=${quizSave.chosenAnswerId}`))
+      catchError(this.handleError<number>(`chosenAnswerId=${quizSave.chosenAnswerId}`))
     );
   }
 

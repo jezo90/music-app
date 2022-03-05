@@ -41,6 +41,10 @@ export class TokenStorageService {
     return JSON.parse(<string>window.sessionStorage.getItem(USERNAME_KEY));
   }
 
+  public getUsernameString(): string {
+    return <string>window.sessionStorage.getItem(USERNAME_KEY);
+  }
+
   public getRoles() {
     return window.sessionStorage.getItem(ROLES_KEY);
   }
