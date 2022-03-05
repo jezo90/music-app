@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
 @Data
 @Entity
 @Table(name = "quiz")
@@ -18,7 +17,7 @@ public class QuizEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_username")
     private UserEntity userEntity;
 
     @ManyToOne
