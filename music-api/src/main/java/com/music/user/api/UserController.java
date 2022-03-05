@@ -1,6 +1,7 @@
 package com.music.user.api;
 
 import com.music.exception.EntityNotFoundException;
+import com.music.role.dao.RoleEntity;
 import com.music.role.port.inbound.RoleComponent;
 import com.music.user.JwtUtil;
 import com.music.user.dao.UserEntity;
@@ -13,11 +14,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -29,11 +32,6 @@ class UserController {
     private final RoleComponent roleComponent;
     private final UserComponent userComponent;
 
-    @GetMapping("/")
-    public String welcome() {
-        return "czesc";
-    }
-
     @PostMapping("/login")
     public ResponseEntity<UserToken> generateToken(@RequestBody UserRequest userRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -41,9 +39,16 @@ class UserController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        UserEntity userEntity = (UserEntity) authentication.getPrincipal();
+
+
         return ResponseEntity.ok(
                 new UserToken(
-                        jwtUtil.generateJwtToken(authentication)));
+                        jwtUtil.generateJwtToken(authentication),
+                        userEntity.getId(),
+                        userEntity.getUsername(),
+                        userEntity.getEmail(),
+                        userEntity.getRoles()));
     }
 
     @PostMapping("/register")
@@ -68,9 +73,4 @@ class UserController {
         return userComponent.saveUser(user);
     }
 
-    @GetMapping("/get")
-    public String get() {
-
-        return "XD";
-    }
 }
