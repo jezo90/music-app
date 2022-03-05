@@ -44,7 +44,7 @@ export class QuizComponent implements OnInit {
 
   addQuiz(trackId: number) {
     this.quizSave = new QuizSave(
-      this.token.getId(),
+      this.token.getUsername(),
       this.quiz.firstTrackId,
       this.quiz.secondTrackId,
       this.quiz.thirdTrackId,
