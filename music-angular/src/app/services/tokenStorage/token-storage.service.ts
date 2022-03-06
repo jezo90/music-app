@@ -31,6 +31,7 @@ export class TokenStorageService {
     window.sessionStorage.removeItem(ROLES_KEY);
     window.sessionStorage.removeItem(USERID_KEY);
     window.sessionStorage.removeItem(EMAIL_KEY);
+
     window.sessionStorage.setItem(TOKEN_KEY, token.token);
     window.sessionStorage.setItem(USERNAME_KEY, token.username);
     window.sessionStorage.setItem(ROLES_KEY, token.roles.toString());
