@@ -1,7 +1,7 @@
 package com.music.quiz.dao;
 
 public record QuizSaveDto(
-        String username,
+        Long userId,
         Long firstTrackId,
         Long secondTrackId,
         Long thirdTrackId,

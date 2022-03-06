@@ -1,7 +1,7 @@
 package com.music.quiz.model;
 
 public record QuizSave(
-        String username,
+        Long userId,
         Long firstTrackId,
         Long secondTrackId,
         Long thirdTrackId,

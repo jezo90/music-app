@@ -17,7 +17,7 @@ public class QuizEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_username")
+    @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
     @ManyToOne

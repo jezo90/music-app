@@ -50,7 +50,7 @@ public class QuizMapper {
     public static QuizSaveDto map(QuizSave quizSave)
     {
         return new QuizSaveDto(
-                quizSave.username(),
+                quizSave.userId(),
                 quizSave.firstTrackId(),
                 quizSave.secondTrackId(),
                 quizSave.thirdTrackId(),
