@@ -13,7 +13,6 @@ import {TokenStorageService} from "../../services/tokenStorage/token-storage.ser
 export class LoginComponent implements OnInit {
 
   user: User = new User('', '', '');
-  token: Token = new Token('','','');
   error : any = null;
 
   constructor(private router: Router,

@@ -15,7 +15,7 @@ export class QuizComponent implements OnInit {
 
   public quiz: Quiz = new Quiz(0, '', 0, '', 0, '', '', 0);
   private quizRequest: QuizRequest = new QuizRequest(0, 0, 0);
-  private quizSave: QuizSave = new QuizSave("", 0, 0,0,"",0,0);
+  private quizSave: QuizSave = new QuizSave(0, 0, 0,0,"",0,0);
   private quizId = 0;
 
 
@@ -49,12 +49,12 @@ export class QuizComponent implements OnInit {
 
   addQuiz(trackId: number) {
     console.log("token: " + this.tokenStorage.getToken());
-    console.log("username " + this.tokenStorage.getUsernameString());
+    console.log("userId " + this.tokenStorage.getUserId());
     console.log("role " + this.tokenStorage.getRoles());
 
 
     this.quizSave = new QuizSave(
-      this.tokenStorage.getUsernameString(),
+      this.tokenStorage.getUserId(),
       this.quiz.firstTrackId,
       this.quiz.secondTrackId,
       this.quiz.thirdTrackId,

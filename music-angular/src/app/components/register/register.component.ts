@@ -14,7 +14,6 @@ export class RegisterComponent implements OnInit {
 
   user: User = new User('', '', '');
   error: any = null;
-  token: Token = new Token('', '', '');
 
   constructor(private router: Router,
               private authService: AuthenticationService,

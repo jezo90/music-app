@@ -42,7 +42,7 @@ export class QuizService {
 
   addQuiz(quizSave: QuizSave): Observable<number> {
 
-    console.log(quizSave.username);
+    console.log(quizSave.userId);
     return this.http.post<number>(AUTH_API + "/addQuiz", quizSave).pipe(
       catchError(this.handleError<number>(`chosenAnswerId=${quizSave.chosenAnswerId}`))
     );

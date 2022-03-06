@@ -1,6 +1,6 @@
 export class QuizSave {
   constructor(
-    public username: string,
+    public userId: number,
     public firstTrackId: number,
     public secondTrackId: number,
     public thirdTrackId: number,
