@@ -38,9 +38,7 @@ class UserController {
                 new UsernamePasswordAuthenticationToken(userRequest.login(), userRequest.password()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         UserEntity userEntity = (UserEntity) authentication.getPrincipal();
-
 
         return ResponseEntity.ok(
                 new UserToken(
