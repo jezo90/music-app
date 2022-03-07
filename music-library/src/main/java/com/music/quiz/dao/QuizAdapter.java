@@ -27,6 +27,7 @@ class QuizAdapter implements QuizRepository {
     }
 
     @Override
+    @Transactional
     public Long addQuiz(QuizSaveDto quizSaveDto) {
 
         QuizEntity quizEntity = quizSpringRepository.save(QuizEntityMapper.map(quizSaveDto));
