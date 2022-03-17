@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe(
       data => {
         this.save(data);
-        console.log(data);
+        console.log("role " + this.tokenStorage.getRoles());
         this.router.navigate(['../']).then(r=>r);
       },
       er => {

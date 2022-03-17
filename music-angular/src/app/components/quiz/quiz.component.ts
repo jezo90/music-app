@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Quiz} from "../../services/quiz/quiz";
+import {Quiz} from "../../services/quiz/models/quiz/quiz";
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuizService} from "../../services/quiz/quiz.service";
-import {QuizRequest} from "../../services/quiz/quiz-request";
+import {QuizRequest} from "../../services/quiz/models/quiz-request/quiz-request";
 import {QuizSave} from "../../services/quiz/quiz-save";
 import {TokenStorageService} from "../../services/tokenStorage/token-storage.service";
 
@@ -48,10 +48,6 @@ export class QuizComponent implements OnInit {
   }
 
   addQuiz(trackId: number) {
-    console.log("token: " + this.tokenStorage.getToken());
-    console.log("userId " + this.tokenStorage.getUserId());
-    console.log("role " + this.tokenStorage.getRoles());
-
 
     this.quizSave = new QuizSave(
       this.tokenStorage.getUserId(),
@@ -65,10 +61,9 @@ export class QuizComponent implements OnInit {
     this.quizService.addQuiz(this.quizSave).subscribe(
       data => {
         this.responseToNumber(data);
+        this.router.navigate(["/" + this.quizId]).then(r => r);
       }
     );
-
-
   }
 
 }

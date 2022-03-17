@@ -1,0 +1,35 @@
+<div class="container text-md-center">
+
+  <div class="row">
+
+    <div class="col m-5 words">
+      <b>Guess the song</b> <br />
+      {{this.quizResponse.words}}
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+      <button type="button" class="buttons" [ngClass]="setClass(this.quizResponse.firstTrackId)">>
+        A. {{this.quizResponse.firstTrackTitle}}
+      </button>
+    </div>
+
+    <div class="col">
+      <button type="button" class="buttons" [ngClass]="setClass(this.quizResponse.secondTrackId)">
+        B. {{this.quizResponse.secondTrackTitle}}
+      </button>
+    </div>
+
+    <div class="col">
+      <button type="button" class="buttons" [ngClass]="setClass(this.quizResponse.thirdTrackId)">
+        C. {{this.quizResponse.thirdTrackTitle}}
+      </button>
+    </div>
+
+  </div>
+
+
+</div>

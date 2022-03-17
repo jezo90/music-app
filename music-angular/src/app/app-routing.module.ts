@@ -6,6 +6,7 @@ import {RegisterComponent} from "./components/register/register.component";
 import {ArtistComponent} from "./components/artist/artist.component";
 import {ArtistDetailsComponent} from "./components/artist-details/artist-details.component";
 import {QuizComponent} from "./components/quiz/quiz.component";
+import {QuizDetailsComponent} from "./components/quiz-details/quiz-details.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'artist', component: ArtistComponent},
   {path: 'artist/:id', component: ArtistDetailsComponent},
-  {path: 'quiz', component: QuizComponent}
+  {path: 'quiz', component: QuizComponent},
+  {path: 'quiz/:id', component: QuizDetailsComponent},
 ]
 
 @NgModule({

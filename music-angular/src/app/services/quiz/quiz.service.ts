@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Quiz} from "./quiz";
-import {QuizRequest} from "./quiz-request";
+import {Quiz} from "./models/quiz/quiz";
+import {QuizRequest} from "./models/quiz-request/quiz-request";
 import {catchError, Observable, of} from "rxjs";
 import {QuizSave} from "./quiz-save";
+import {QuizResponse} from "./models/quiz-response/quiz-response";
+import {Artist} from "../artist/artist";
 
 
 const AUTH_API = 'http://localhost:9192/quiz';
@@ -42,10 +44,15 @@ export class QuizService {
 
   addQuiz(quizSave: QuizSave): Observable<number> {
 
-    console.log(quizSave.userId);
     return this.http.post<number>(AUTH_API + "/addQuiz", quizSave).pipe(
       catchError(this.handleError<number>(`chosenAnswerId=${quizSave.chosenAnswerId}`))
     );
   }
 
+  getQuiz(id: number): Observable<QuizResponse> {
+
+    return this.http.get<QuizResponse>(AUTH_API + '/get' + id).pipe(
+      catchError(this.handleError<QuizResponse>(`chosenAnswerId=${id}`))
+    );
+  }
 }

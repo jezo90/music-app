@@ -8,9 +8,13 @@
     <div class="col m-5">
       <h1> <b> {{this.artist.nickname.toUpperCase()}}  </b> </h1>
       <h4> {{this.artist.firstName}} {{this.artist.lastName}} </h4>
-      <div class="mt-3">
+      <div class="my-3">
         {{this.convertToDate(this.artist.birthDate) | date:'longDate'}}
       </div>
+      <p>Guess the song with:</p>
+      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(0 , this.artist.id, 5)">5 words</button>
+      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(0 , this.artist.id, 10)">10 words</button>
+      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(0 , this.artist.id, 15)">15 words</button>
     </div>
 
   </div>
@@ -34,7 +38,10 @@
     <div class="col m-5">
       <h1> <b> {{this.tempAlbum.cdName.toUpperCase()}}  </b> </h1>
       <h4> {{this.convertToDate(this.tempAlbum.releaseDate) | date:'longDate'}} </h4><br/>
-      <button type="button" class="btn btn-dark" (click)="createQuiz(tempAlbum.id , 0, 5)">Dark</button>
+      <p>Guess the song with:</p>
+      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(tempAlbum.id , 0, 5)">5 words</button>
+      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(tempAlbum.id , 0, 10)">10 words</button>
+      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(tempAlbum.id , 0, 15)">15 words</button>
     </div>
 
   </div>

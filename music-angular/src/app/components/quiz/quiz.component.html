@@ -2,7 +2,8 @@
 
   <div class="row">
 
-    <div class="col m-5">
+    <div class="col m-5 words">
+      <b>Guess the song</b> <br />
       {{this.quiz.words}}
     </div>
 
@@ -11,20 +12,20 @@
   <div class="row">
 
     <div class="col">
-      <button type="button" class="btn btn-dark" (click)="addQuiz(this.quiz.firstTrackId)">
-        {{this.quiz.firstTrackTitle}}
+      <button type="button" class="btn btn-dark buttons" (click)="addQuiz(this.quiz.firstTrackId)">
+        A. {{this.quiz.firstTrackTitle}}
       </button>
     </div>
 
     <div class="col">
-      <button type="button" class="btn btn-dark" (click)="addQuiz(this.quiz.secondTrackId)">
-        {{this.quiz.secondTrackTitle}}
+      <button type="button" class="btn btn-dark buttons" (click)="addQuiz(this.quiz.secondTrackId)">
+        B. {{this.quiz.secondTrackTitle}}
       </button>
     </div>
 
     <div class="col">
-      <button type="button" class="btn btn-dark" (click)="addQuiz(this.quiz.thirdTrackId)">
-        {{this.quiz.thirdTrackTitle}}
+      <button type="button" class="btn btn-dark buttons" (click)="addQuiz(this.quiz.thirdTrackId)">
+        C. {{this.quiz.thirdTrackTitle}}
       </button>
     </div>
 

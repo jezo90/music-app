@@ -13,6 +13,7 @@ import { ArtistComponent } from './components/artist/artist.component';
 import { ArtistDetailsComponent } from './components/artist-details/artist-details.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import {RouterModule} from "@angular/router";
+import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {RouterModule} from "@angular/router";
     NavComponent,
     ArtistComponent,
     ArtistDetailsComponent,
-    QuizComponent
+    QuizComponent,
+    QuizDetailsComponent
   ],
   imports: [
     BrowserModule,
