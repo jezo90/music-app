@@ -11,14 +11,15 @@ public class QuizEntityMapper {
     public static QuizResponseDto map(QuizEntity quizEntity) {
         return new QuizResponseDto(
                 quizEntity.getUserEntity().getId(),
-                quizEntity.getId(),
-                quizEntity.getTrackEntity1().getTitle(),
                 quizEntity.getTrackEntity1().getId(),
-                quizEntity.getTrackEntity2().getTitle(),
+                quizEntity.getTrackEntity1().getTitle(),
                 quizEntity.getTrackEntity2().getId(),
-                quizEntity.getTrackEntity3().getTitle(),
+                quizEntity.getTrackEntity2().getTitle(),
                 quizEntity.getTrackEntity3().getId(),
-                quizEntity.getWords()
+                quizEntity.getTrackEntity3().getTitle(),
+                quizEntity.getWords(),
+                quizEntity.getCorrectAnswer(),
+                quizEntity.getChosenAnswer()
         );
     }
 

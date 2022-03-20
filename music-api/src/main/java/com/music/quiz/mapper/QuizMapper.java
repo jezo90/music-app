@@ -21,14 +21,15 @@ public class QuizMapper {
     public static QuizResponse map(QuizResponseDto quizResponseDto) {
         return new QuizResponse(
                 quizResponseDto.userId(),
-                quizResponseDto.quizId(),
-                quizResponseDto.firstTrackTitle(),
                 quizResponseDto.firstTrackId(),
-                quizResponseDto.secondTrackTitle(),
+                quizResponseDto.firstTrackTitle(),
                 quizResponseDto.secondTrackId(),
-                quizResponseDto.thirdTrackTitle(),
+                quizResponseDto.secondTrackTitle(),
                 quizResponseDto.thirdTrackId(),
-                quizResponseDto.words()
+                quizResponseDto.thirdTrackTitle(),
+                quizResponseDto.words(),
+                quizResponseDto.correctAnswerId(),
+                quizResponseDto.userAnswerId()
         );
     }
 
