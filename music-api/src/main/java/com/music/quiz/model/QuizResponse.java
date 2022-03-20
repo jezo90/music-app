@@ -2,13 +2,14 @@ package com.music.quiz.model;
 
 public record QuizResponse(
         Long userId,
-        Long quizId,
-        String firstTrackTitle,
         Long firstTrackId,
-        String secondTrackTitle,
+        String firstTrackTitle,
         Long secondTrackId,
-        String thirdTrackTitle,
+        String secondTrackTitle,
         Long thirdTrackId,
-        String words
+        String thirdTrackTitle,
+        String words,
+        Long correctAnswerId,
+        Long userAnswerId
 ) {
 }
