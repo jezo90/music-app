@@ -5,7 +5,6 @@ import {QuizRequest} from "./models/quiz-request/quiz-request";
 import {catchError, Observable, of} from "rxjs";
 import {QuizSave} from "./quiz-save";
 import {QuizResponse} from "./models/quiz-response/quiz-response";
-import {Artist} from "../artist/artist";
 
 
 const AUTH_API = 'http://localhost:9192/quiz';
@@ -51,7 +50,7 @@ export class QuizService {
 
   getQuiz(id: number): Observable<QuizResponse> {
 
-    return this.http.get<QuizResponse>(AUTH_API + '/get' + id).pipe(
+    return this.http.get<QuizResponse>(AUTH_API + '/' + id).pipe(
       catchError(this.handleError<QuizResponse>(`chosenAnswerId=${id}`))
     );
   }

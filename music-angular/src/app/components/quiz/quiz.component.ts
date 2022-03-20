@@ -61,7 +61,7 @@ export class QuizComponent implements OnInit {
     this.quizService.addQuiz(this.quizSave).subscribe(
       data => {
         this.responseToNumber(data);
-        this.router.navigate(["/" + this.quizId]).then(r => r);
+        this.router.navigate(["/quiz/" + this.quizId]).then(r => r);
       }
     );
   }
