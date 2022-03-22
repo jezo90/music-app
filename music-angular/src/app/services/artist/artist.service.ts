@@ -27,12 +27,14 @@ export class ArtistService {
   }
 
   addArtist(artistRequest: ArtistRequest, file: File){
+
     let formParams = new FormData();
+    let date = new Date(artistRequest.birthDate);
     formParams.append('file', file);
     formParams.append('firstName', artistRequest.firstName);
     formParams.append('lastName', artistRequest.lastName);
     formParams.append('nickname', artistRequest.nickname);
-    formParams.append('birthDate', artistRequest.birthDate.toLocaleDateString());
+    formParams.append('birthDate', date.toLocaleDateString());
     return this.http.post(API_URL + "/add", formParams);
   }
 
