@@ -7,6 +7,7 @@ import com.music.artist.port.inbound.ArtistComponent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,11 +35,12 @@ class ArtistController {
     }
 
     @PostMapping("/add")
-    ResponseEntity<ArtistResponse> add(@RequestBody ArtistRequest artistRequest) throws IOException {
+    ResponseEntity<ArtistResponse> add(@RequestBody ArtistRequest artistRequest, @RequestParam("file") MultipartFile file) throws IOException {
+
         return ResponseEntity.ok(
                 ArtistMapper.map(
                         artistComponent.add(
-                                ArtistMapper.map(artistRequest))));
+                                ArtistMapper.map(artistRequest, file))));
     }
 
 }
