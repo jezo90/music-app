@@ -45,7 +45,7 @@ class ArtistController {
                                        @RequestParam("nickname") String nickname,
                                        @RequestParam("birthDate") String birthDate) throws IOException, ParseException {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MMM.yyyy", Locale.ENGLISH);
         Date date = formatter.parse(birthDate);
 
         ArtistRequest artistRequest = new ArtistRequest(nickname,firstName,lastName,date);
