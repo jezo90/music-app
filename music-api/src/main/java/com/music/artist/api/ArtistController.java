@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @RequiredArgsConstructor
 @RestController
@@ -35,7 +39,16 @@ class ArtistController {
     }
 
     @PostMapping("/add")
-    ResponseEntity<ArtistResponse> add(@RequestBody ArtistRequest artistRequest, @RequestParam("file") MultipartFile file) throws IOException {
+    ResponseEntity<ArtistResponse> add(@RequestParam("file") MultipartFile file,
+                                       @RequestParam("firstName") String firstName,
+                                       @RequestParam("lastName") String lastName,
+                                       @RequestParam("nickname") String nickname,
+                                       @RequestParam("birthDate") String birthDate) throws IOException, ParseException {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+        Date date = formatter.parse(birthDate);
+
+        ArtistRequest artistRequest = new ArtistRequest(nickname,firstName,lastName,date);
 
         return ResponseEntity.ok(
                 ArtistMapper.map(
