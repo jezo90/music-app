@@ -8,6 +8,6 @@ public record ArtistResponse(
         String firstName,
         String lastName,
         Date birthDate,
-        String image
+        byte[] image
 ) {
 }

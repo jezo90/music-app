@@ -7,6 +7,7 @@ import com.music.artist.port.outbound.ArtistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,19 +35,12 @@ class ArtistAdapter implements ArtistRepository {
     }
 
     @Override
-    public ArtistResponseDto add(ArtistRequestDto artistRequestDto) {
+    public ArtistResponseDto add(ArtistRequestDto artistRequestDto) throws IOException {
+
         return ArtistEntityMapper.map(
                 artistSpringRepository
                         .save(ArtistEntityMapper
                                       .map(artistRequestDto)));
-    }
-
-    @Override
-    public List<ArtistResponseDto> addMultiple(List<ArtistRequestDto> artistRequestDtoList) {
-        return ArtistEntityMapper.map(
-                artistSpringRepository
-                        .saveAll(ArtistEntityMapper
-                                         .mapToEntity(artistRequestDtoList)));
     }
 
     @Override

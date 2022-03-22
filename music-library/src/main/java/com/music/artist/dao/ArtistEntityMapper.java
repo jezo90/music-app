@@ -2,13 +2,17 @@ package com.music.artist.dao;
 
 import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
+import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ArtistEntityMapper {
 
     public static ArtistResponseDto map(ArtistEntity artistEntity) {
+
         return new ArtistResponseDto(
                 artistEntity.getId(),
                 artistEntity.getNickname(),
@@ -16,32 +20,30 @@ public class ArtistEntityMapper {
                 artistEntity.getLastName(),
                 artistEntity.getBirthDate(),
                 artistEntity.getImage()
+
         );
     }
 
-    public static List<ArtistResponseDto> map(List<ArtistEntity> artistEntities) {
-        return artistEntities.stream()
-                .map(ArtistEntityMapper::map)
-                .collect(Collectors.toList());
+    public static ArtistEntity map(ArtistRequestDto artistRequestDto) throws IOException {
 
-    }
-
-    public static ArtistEntity map(ArtistRequestDto artistRequestDto) {
         ArtistEntity artistEntity = new ArtistEntity();
         artistEntity.setNickname(artistRequestDto.nickname());
         artistEntity.setFirstName(artistRequestDto.firstName());
         artistEntity.setLastName(artistRequestDto.lastName());
         artistEntity.setBirthDate(artistRequestDto.birthDate());
+        artistEntity.setImageName(
+                StringUtils.cleanPath(
+                        Objects.requireNonNull(
+                                artistRequestDto.image()
+                                        .getOriginalFilename())));
+        artistEntity.setImageType(
+                artistRequestDto.image()
+                        .getContentType());
+        artistEntity.setImage(artistRequestDto
+                .image()
+                .getBytes());
 
         return artistEntity;
     }
-
-    public static List<ArtistEntity> mapToEntity(List<ArtistRequestDto> artistRequestDtoList) {
-        return artistRequestDtoList
-                .stream()
-                .map(ArtistEntityMapper::map)
-                .collect(Collectors.toList());
-    }
-
 
 }

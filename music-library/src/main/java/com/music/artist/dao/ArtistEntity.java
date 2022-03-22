@@ -20,7 +20,11 @@ public class ArtistEntity {
     private String firstName;
     private String lastName;
     private Date birthDate;
-    private String image;
+
+    private String imageName;
+    private String imageType;
+    @Lob
+    private byte[] image;
 
     @OneToMany(mappedBy = "artistEntity")
     private List<AlbumEntity> albumList;

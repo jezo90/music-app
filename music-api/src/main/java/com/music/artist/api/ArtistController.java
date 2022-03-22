@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -33,20 +34,11 @@ class ArtistController {
     }
 
     @PostMapping("/add")
-    ResponseEntity<ArtistResponse> add(@RequestBody ArtistRequest artistRequest) {
+    ResponseEntity<ArtistResponse> add(@RequestBody ArtistRequest artistRequest) throws IOException {
         return ResponseEntity.ok(
                 ArtistMapper.map(
                         artistComponent.add(
                                 ArtistMapper.map(artistRequest))));
     }
-
-    @PostMapping("/addMultiple")
-    ResponseEntity<List<ArtistResponse>> addMultiple(@RequestBody List<ArtistRequest> artistRequestList) {
-        return ResponseEntity.ok(
-                ArtistMapper.map(
-                        artistComponent.addMultiple(
-                                ArtistMapper.mapToDto(artistRequestList))));
-    }
-
 
 }
