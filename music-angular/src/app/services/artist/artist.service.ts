@@ -26,8 +26,14 @@ export class ArtistService {
     );
   }
 
-  addArtist(artistRequest: ArtistRequest){
-    return this.http.post(API_URL + "/add", artistRequest);
+  addArtist(artistRequest: ArtistRequest, file: File){
+    let formParams = new FormData();
+    formParams.append('file', file);
+    formParams.append('firstName', artistRequest.firstName);
+    formParams.append('lastName', artistRequest.lastName);
+    formParams.append('nickname', artistRequest.nickname);
+    formParams.append('birthDate', artistRequest.birthDate.toLocaleDateString());
+    return this.http.post(API_URL + "/add", formParams);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

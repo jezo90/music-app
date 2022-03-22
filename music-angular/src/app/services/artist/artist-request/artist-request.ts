@@ -3,7 +3,6 @@ export class ArtistRequest {
     public nickname: string,
     public firstName: string,
     public lastName: string,
-    public birthDate: Date,
-    public image: File | null
+    public birthDate: Date
   ) {}
 }

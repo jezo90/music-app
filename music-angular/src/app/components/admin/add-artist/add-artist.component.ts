@@ -9,10 +9,10 @@ import {ArtistService} from "../../../services/artist/artist.service";
 })
 export class AddArtistComponent implements OnInit {
 
-  file: File | null =  null;
+  file: File = new File([],'');
   newArtistId: number = 0;
 
-  public artistRequest: ArtistRequest = new ArtistRequest('', '', '', new Date(), null);
+  public artistRequest: ArtistRequest = new ArtistRequest('', '', '', new Date());
 
   constructor(private artistService: ArtistService) {
   }
@@ -22,11 +22,11 @@ export class AddArtistComponent implements OnInit {
 
   onFileChange(event: any) {
     console.log(event.target.files[0]);
-    this.artistRequest.image = event.target.files[0];
+    this.file = event.target.files[0];
   }
 
   addArtist() {
-    this.artistService.addArtist(this.artistRequest).subscribe(
+    this.artistService.addArtist(this.artistRequest, this.file).subscribe(
       data =>
       {
         this.dataToId(data);
