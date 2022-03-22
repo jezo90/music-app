@@ -5,6 +5,10 @@
   margin: auto;
 }
 
+.form-control{
+  margin-bottom: 3pt;
+}
+
 .form-signin .checkbox {
   font-weight: 400;
 }

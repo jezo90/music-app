@@ -7,6 +7,7 @@ import {ArtistComponent} from "./components/artist/artist.component";
 import {ArtistDetailsComponent} from "./components/artist-details/artist-details.component";
 import {QuizComponent} from "./components/quiz/quiz.component";
 import {QuizDetailsComponent} from "./components/quiz-details/quiz-details.component";
+import {AddArtistComponent} from "./components/admin/add-artist/add-artist.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'artist/:id', component: ArtistDetailsComponent},
   {path: 'quiz', component: QuizComponent},
   {path: 'quiz/:id', component: QuizDetailsComponent},
+  {path: 'admin/addArtist', component: AddArtistComponent}
 ]
 
 @NgModule({
