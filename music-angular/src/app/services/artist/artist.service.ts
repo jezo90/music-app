@@ -27,7 +27,6 @@ export class ArtistService {
   }
 
   addArtist(artistRequest: ArtistRequest, file: File){
-
     let formParams = new FormData();
     let date = new Date(artistRequest.birthDate);
     formParams.append('file', file);
