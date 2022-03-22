@@ -6,6 +6,7 @@ import com.music.artist.port.outbound.ArtistRepository;
 import com.music.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -22,11 +23,9 @@ class ArtistService {
                 .orElseThrow(() -> new EntityNotFoundException("There is no artist with such Id "));
     }
 
-    public ArtistResponseDto add(ArtistRequestDto artistRequestDto) {
+    public ArtistResponseDto add(ArtistRequestDto artistRequestDto) throws IOException {
+
         return artistRepository.add(artistRequestDto);
     }
 
-    public List<ArtistResponseDto> addMultiple(List<ArtistRequestDto> artistRequestDtoList) {
-        return artistRepository.addMultiple(artistRequestDtoList);
-    }
 }

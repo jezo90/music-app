@@ -5,6 +5,7 @@ import com.music.artist.dto.ArtistResponseDto;
 import com.music.artist.model.ArtistRequest;
 import com.music.artist.model.ArtistResponse;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,28 +29,14 @@ public class ArtistMapper {
                 .collect(Collectors.toList());
     }
 
-    public static ArtistRequestDto map(ArtistResponse artistResponse) {
-        return new ArtistRequestDto(
-                artistResponse.nickname(),
-                artistResponse.firstName(),
-                artistResponse.lastName(),
-                artistResponse.birthDate()
-        );
-    }
 
-    public static List<ArtistRequestDto> mapToDto(List<ArtistRequest> artistRequestList) {
-        return artistRequestList
-                .stream()
-                .map(ArtistMapper::map)
-                .collect(Collectors.toList());
-    }
-
-    public static ArtistRequestDto map(ArtistRequest artistRequest) {
+    public static ArtistRequestDto map(ArtistRequest artistRequest) throws IOException {
         return new ArtistRequestDto(
                 artistRequest.nickname(),
                 artistRequest.firstName(),
                 artistRequest.lastName(),
-                artistRequest.birthDate()
+                artistRequest.birthDate(),
+                artistRequest.image()
         );
     }
 }
