@@ -8,7 +8,6 @@ public record ArtistRequest(
         String nickname,
         String firstName,
         String lastName,
-        Date birthDate,
-        MultipartFile image
+        Date birthDate
 ) {
 }

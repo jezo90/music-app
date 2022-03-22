@@ -4,6 +4,7 @@ import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
 import com.music.artist.model.ArtistRequest;
 import com.music.artist.model.ArtistResponse;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,13 +31,13 @@ public class ArtistMapper {
     }
 
 
-    public static ArtistRequestDto map(ArtistRequest artistRequest) throws IOException {
+    public static ArtistRequestDto map(ArtistRequest artistRequest, MultipartFile file) throws IOException {
         return new ArtistRequestDto(
                 artistRequest.nickname(),
                 artistRequest.firstName(),
                 artistRequest.lastName(),
                 artistRequest.birthDate(),
-                artistRequest.image()
+                file
         );
     }
 }
