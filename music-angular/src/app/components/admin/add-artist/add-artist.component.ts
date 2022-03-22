@@ -10,6 +10,7 @@ import {ArtistService} from "../../../services/artist/artist.service";
 export class AddArtistComponent implements OnInit {
 
   file: File | null =  null;
+  newArtistId: number = 0;
 
   public artistRequest: ArtistRequest = new ArtistRequest('', '', '', new Date(), null);
 
@@ -20,11 +21,22 @@ export class AddArtistComponent implements OnInit {
   }
 
   onFileChange(event: any) {
-    console.log(event.target.files[0])
-    this.artistRequest.image = event.target.files[0]
+    console.log(event.target.files[0]);
+    this.artistRequest.image = event.target.files[0];
   }
 
   addArtist() {
-    this.artistService.addArtist(this.artistRequest)
+    this.artistService.addArtist(this.artistRequest).subscribe(
+      data =>
+      {
+        this.dataToId(data);
+        console.log(this.newArtistId)
+      }
+    );
+  }
+
+  dataToId(data: any)
+  {
+    this.newArtistId = data;
   }
 }

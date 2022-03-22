@@ -8,7 +8,7 @@
     <input type="text" class="form-control" [(ngModel)]="artistRequest.lastName" name="lastName" placeholder="Last name">
     <input type="date" class="form-control" [(ngModel)]="artistRequest.birthDate" name="birthDate" placeholder="Birth date">
     <label>Choose Image:</label>
-    <input type="file" id="formFile" class="form-control" [(ngModel)]="artistRequest.image" name="image" placeholder="Image"
+    <input type="file" id="formFile" class="form-control" name="image" placeholder="Image"
       (change)="this.onFileChange($event)" >
     <button type="button" class="w-100 btn btn-secondary my-3">Upload file</button>
 
