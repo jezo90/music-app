@@ -8,5 +8,5 @@ public record ArtistResponseDto(
         String firstName,
         String lastName,
         Date birthDate,
-        byte[] image) {
+        String image) {
 }
