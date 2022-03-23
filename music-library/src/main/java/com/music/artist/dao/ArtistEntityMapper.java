@@ -1,5 +1,6 @@
 package com.music.artist.dao;
 
+import com.music.artist.dto.ArtistImageDto;
 import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
 import org.springframework.util.StringUtils;
@@ -44,6 +45,14 @@ public class ArtistEntityMapper {
                 .getBytes());
 
         return artistEntity;
+    }
+
+    public static ArtistImageDto mapToImageDto(ArtistEntity artistEntity)
+    {
+        return new ArtistImageDto
+                (artistEntity.getImageName(),
+                        artistEntity.getImageType(),
+                        artistEntity.getImage());
     }
 
 }

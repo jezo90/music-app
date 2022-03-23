@@ -1,6 +1,7 @@
 package com.music.artist.dao;
 
 import com.music.album.dto.TrackDetailsDto;
+import com.music.artist.dto.ArtistImageDto;
 import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
 import com.music.artist.port.outbound.ArtistRepository;
@@ -56,5 +57,12 @@ class ArtistAdapter implements ArtistRepository {
                                 trackEntity.getText()
                         )))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<ArtistImageDto> findImageByName(String name) {
+        return artistSpringRepository
+                .findArtistEntitiesByImageName(name)
+                .map(ArtistEntityMapper::mapToImageDto);
     }
 }

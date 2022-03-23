@@ -1,5 +1,6 @@
 package com.music.artist;
 
+import com.music.artist.dto.ArtistImageDto;
 import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
 import com.music.artist.port.inbound.ArtistComponent;
@@ -25,6 +26,11 @@ class ArtistFacade implements ArtistComponent {
     @Override
     public ArtistResponseDto add(ArtistRequestDto artistRequestDto) throws IOException {
         return artistService.add(artistRequestDto);
+    }
+
+    @Override
+    public ArtistImageDto findImageByName(String name) {
+        return artistService.findImageByName(name);
     }
 
 }
