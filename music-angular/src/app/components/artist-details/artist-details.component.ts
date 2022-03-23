@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Artist} from "../../services/artist/artist";
 import {AlbumService} from "../../services/album/album.service";
 import {Album} from "../../services/album/album";
-import {QuizService} from "../../services/quiz/quiz.service";
 
 @Component({
   selector: 'app-artist-details',
@@ -16,8 +15,8 @@ export class ArtistDetailsComponent implements OnInit {
   private artistId: number = 0;
   private newDate: Date | undefined;
   public quizId: string = "";
-  public artist: Artist = new Artist(0, '', '', '', 0, '');
-  public albums: Array<Album> = []
+  public artist: Artist = new Artist(0, '', '', '', 0, 'default.jpg');
+  public albums: Array<Album> = [];
 
   constructor(private artistService: ArtistService,
               private albumService: AlbumService,
@@ -30,6 +29,10 @@ export class ArtistDetailsComponent implements OnInit {
     this.artistId = +this.route.snapshot.paramMap.get('id');
     this.getArtistDetails(this.artistId);
     this.getAlbumsByArtistId(this.artistId);
+  }
+
+  getLink() {
+    return "http://localhost:9192/artist/image/" + this.artist.image;
   }
 
   getArtistDetails(id: any): void {
