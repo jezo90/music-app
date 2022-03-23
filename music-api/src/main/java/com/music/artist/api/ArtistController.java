@@ -5,7 +5,6 @@ import com.music.artist.model.ArtistImage;
 import com.music.artist.model.ArtistRequest;
 import com.music.artist.model.ArtistResponse;
 import com.music.artist.port.inbound.ArtistComponent;
-import com.music.artist.util.ImageUtility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -68,7 +67,6 @@ class ArtistController {
         return ResponseEntity
                 .ok()
                 .contentType(MediaType.valueOf(image.imageType()))
-                .body(ImageUtility.decompressImage(image.image()));
+                .body(image.image());
     }
-
 }
