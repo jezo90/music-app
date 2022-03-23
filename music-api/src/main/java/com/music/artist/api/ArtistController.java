@@ -1,10 +1,13 @@
 package com.music.artist.api;
 
 import com.music.artist.mapper.ArtistMapper;
+import com.music.artist.model.ArtistImage;
 import com.music.artist.model.ArtistRequest;
 import com.music.artist.model.ArtistResponse;
 import com.music.artist.port.inbound.ArtistComponent;
+import com.music.artist.util.ImageUtility;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,8 +29,8 @@ class ArtistController {
     ResponseEntity<List<ArtistResponse>> getAllArtists() {
         return ResponseEntity
                 .ok(ArtistMapper
-                            .map(artistComponent
-                                         .getAll()));
+                        .map(artistComponent
+                                .getAll()));
     }
 
     @GetMapping("/{id}")
@@ -35,7 +38,7 @@ class ArtistController {
         return ResponseEntity.ok(
                 ArtistMapper
                         .map(artistComponent
-                                     .get(id)));
+                                .get(id)));
     }
 
     @PostMapping("/add")
@@ -48,12 +51,23 @@ class ArtistController {
         SimpleDateFormat formatter = new SimpleDateFormat("d.MM.yyyy", Locale.ENGLISH);
         Date date = formatter.parse(birthDate);
 
-        ArtistRequest artistRequest = new ArtistRequest(nickname,firstName,lastName,date);
+        ArtistRequest artistRequest = new ArtistRequest(nickname, firstName, lastName, date);
 
         return ResponseEntity.ok(
                 ArtistMapper.map(
                         artistComponent.add(
                                 ArtistMapper.map(artistRequest, file))));
+    }
+
+    @GetMapping(path = {"/image/{name}"})
+    public ResponseEntity<byte[]> getImage(@PathVariable("name") String name) {
+
+        final ArtistImage image = ArtistMapper.map(artistComponent.findImageByName(name));
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.valueOf(image.imageType()))
+                .body(ImageUtility.decompressImage(image.image()));
     }
 
 }

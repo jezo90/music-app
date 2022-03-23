@@ -1,7 +1,9 @@
 package com.music.artist.mapper;
 
+import com.music.artist.dto.ArtistImageDto;
 import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
+import com.music.artist.model.ArtistImage;
 import com.music.artist.model.ArtistRequest;
 import com.music.artist.model.ArtistResponse;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,5 +41,13 @@ public class ArtistMapper {
                 artistRequest.birthDate(),
                 file
         );
+    }
+
+    public static ArtistImage map(ArtistImageDto artistImageDto)
+    {
+        return new ArtistImage(
+                artistImageDto.imageName(),
+                artistImageDto.imageType(),
+                artistImageDto.image());
     }
 }

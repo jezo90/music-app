@@ -1,5 +1,6 @@
 package com.music.artist.port.inbound;
 
+import com.music.artist.dto.ArtistImageDto;
 import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
 
@@ -10,4 +11,5 @@ public interface ArtistComponent {
     List<ArtistResponseDto> getAll();
     ArtistResponseDto get(Long id);
     ArtistResponseDto add(ArtistRequestDto artistRequestDto) throws IOException;
+    ArtistImageDto findImageByName(String name);
 }

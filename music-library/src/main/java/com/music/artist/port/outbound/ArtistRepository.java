@@ -1,6 +1,7 @@
 package com.music.artist.port.outbound;
 
 import com.music.album.dto.TrackDetailsDto;
+import com.music.artist.dto.ArtistImageDto;
 import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
 
@@ -16,4 +17,6 @@ public interface ArtistRepository {
     ArtistResponseDto add(ArtistRequestDto artistRequestDto) throws IOException;
 
     List<TrackDetailsDto> getArtistTrackList(Long id);
+
+    Optional<ArtistImageDto> findImageByName(String name);
 }
