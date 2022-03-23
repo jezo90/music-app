@@ -3,6 +3,7 @@ package com.music.artist.dao;
 import com.music.album.dao.AlbumEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,6 +25,7 @@ public class ArtistEntity {
     private String imageName;
     private String imageType;
     @Lob
+    @Type(type = "org.hibernate.type.ImageType")
     private byte[] image;
 
     @OneToMany(mappedBy = "artistEntity")
