@@ -20,8 +20,7 @@ public class ArtistEntityMapper {
                 artistEntity.getFirstName(),
                 artistEntity.getLastName(),
                 artistEntity.getBirthDate(),
-                artistEntity.getImage()
-
+                artistEntity.getImageName()
         );
     }
 
