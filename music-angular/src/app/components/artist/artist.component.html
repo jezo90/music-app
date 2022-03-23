@@ -1,7 +1,7 @@
 <div class="container" *ngFor="let tempArtist of this.artists">
 
   <a routerLink="/artist/{{tempArtist.id}}">
-  <div class="artist" style='background-image: url("{{tempArtist.image}}")'>
+  <div class="artist" style='background-image: url("http://localhost:9192/artist/image/{{tempArtist.image}}")'>
 
     <div class="text-box">
       <b>{{tempArtist.nickname.toUpperCase()}}</b>
