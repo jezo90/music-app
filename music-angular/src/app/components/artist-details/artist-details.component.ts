@@ -31,10 +31,6 @@ export class ArtistDetailsComponent implements OnInit {
     this.getAlbumsByArtistId(this.artistId);
   }
 
-  getLink() {
-    return "http://localhost:9192/artist/image/" + this.artist.image;
-  }
-
   getArtistDetails(id: any): void {
     this.artistService.getArtistById(id).subscribe(
       data => {

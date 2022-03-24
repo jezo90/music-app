@@ -14,6 +14,7 @@ import {ArtistDetailsComponent} from './components/artist-details/artist-details
 import {QuizComponent} from './components/quiz/quiz.component';
 import {QuizDetailsComponent} from './components/quiz-details/quiz-details.component';
 import {AddArtistComponent} from './components/admin/add-artist/add-artist.component';
+import { AddAlbumComponent } from './components/admin/add-album/add-album.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {AddArtistComponent} from './components/admin/add-artist/add-artist.compo
     ArtistDetailsComponent,
     QuizComponent,
     QuizDetailsComponent,
-    AddArtistComponent
+    AddArtistComponent,
+    AddAlbumComponent
   ],
   imports: [
     BrowserModule,

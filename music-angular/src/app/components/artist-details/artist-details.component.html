@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-md-auto">
-      <img class="img" src="{{getLink()}}">
+      <img class="img" src="http://localhost:9192/artist/image/{{this.artist.image}}">
     </div>
 
     <div class="col m-5">
@@ -32,7 +32,7 @@
   <div class="row mt-5" *ngFor="let tempAlbum of this.albums">
 
     <div class="col-md-auto">
-      <img class="img" src="{{this.tempAlbum.image}}">
+      <img class="img" src="http://localhost:9192/album/image/{{tempAlbum.image}}">
     </div>
 
     <div class="col m-5">
