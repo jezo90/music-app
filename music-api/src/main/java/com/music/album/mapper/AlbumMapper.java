@@ -1,11 +1,15 @@
 package com.music.album.mapper;
 
 import com.music.album.dto.AlbumDetailsResponseDto;
+import com.music.album.dto.AlbumImageDto;
 import com.music.album.dto.AlbumRequestDto;
 import com.music.album.dto.AlbumResponseDto;
 import com.music.album.model.AlbumDetailsResponse;
+import com.music.album.model.AlbumImage;
 import com.music.album.model.AlbumRequest;
 import com.music.album.model.AlbumResponse;
+import com.music.artist.dto.ArtistImageDto;
+import com.music.artist.model.ArtistImage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +35,8 @@ public class AlbumMapper {
         return new AlbumRequestDto(
                 albumRequest.cdName(),
                 albumRequest.releaseDate(),
-                albumRequest.artistId()
+                albumRequest.artistId(),
+                albumRequest.image()
         );
     }
 
@@ -51,4 +56,13 @@ public class AlbumMapper {
                 .map(AlbumMapper::map)
                 .collect(Collectors.toList());
     }
+
+    public static AlbumImage map(AlbumImageDto albumImageDto)
+    {
+        return new AlbumImage(
+                albumImageDto.imageName(),
+                albumImageDto.imageType(),
+                albumImageDto.image());
+    }
+
 }

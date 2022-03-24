@@ -1,5 +1,6 @@
 package com.music.artist;
 
+import com.music.album.dto.AlbumImageDto;
 import com.music.artist.dto.ArtistImageDto;
 import com.music.artist.dto.ArtistRequestDto;
 import com.music.artist.dto.ArtistResponseDto;
@@ -31,7 +32,7 @@ class ArtistService {
 
     public ArtistImageDto findImageByName(String name) {
         return artistRepository.findImageByName(name)
-                .orElseThrow(() -> new EntityNotFoundException("There is no artist with such Id "));
+                .orElseThrow(() -> new EntityNotFoundException("There is no image with such name"));
     }
 
 }

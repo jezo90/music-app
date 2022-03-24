@@ -1,15 +1,15 @@
 package com.music.album.dao;
 
-import com.music.album.dto.AlbumDetailsResponseDto;
-import com.music.album.dto.AlbumRequestDto;
-import com.music.album.dto.AlbumResponseDto;
-import com.music.album.dto.TrackDetailsDto;
+import com.music.album.dto.*;
 import com.music.album.port.outbound.AlbumRepository;
+import com.music.artist.dao.ArtistEntityMapper;
+import com.music.artist.dto.ArtistImageDto;
 import com.music.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +27,7 @@ class AlbumAdapter implements AlbumRepository {
 
     @Override
     @Transactional
-    public AlbumResponseDto add(AlbumRequestDto albumRequestDto) {
+    public AlbumResponseDto add(AlbumRequestDto albumRequestDto) throws IOException {
         return AlbumEntityMapper.map(
                 albumSpringRepository.saveAndFlush(
                         AlbumEntityMapper
@@ -51,6 +51,13 @@ class AlbumAdapter implements AlbumRepository {
         return albumSpringRepository.findAlbumEntitiesByArtistEntity_Id(id)
                 .stream().map(AlbumEntityMapper::mapToDetails).toList();
 
+    }
+
+    @Override
+    public Optional<AlbumImageDto> findImageByName(String name) {
+        return albumSpringRepository
+                .findAlbumEntitiesByImageName(name)
+                .map(AlbumEntityMapper::mapToImageDto);
     }
 
 
