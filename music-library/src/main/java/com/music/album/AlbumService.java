@@ -1,12 +1,14 @@
 package com.music.album;
 
 import com.music.album.dto.AlbumDetailsResponseDto;
+import com.music.album.dto.AlbumImageDto;
 import com.music.album.dto.AlbumRequestDto;
 import com.music.album.dto.AlbumResponseDto;
 import com.music.album.port.outbound.AlbumRepository;
 import com.music.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -17,7 +19,7 @@ class AlbumService {
         return albumRepository.getAll();
     }
 
-    AlbumResponseDto add(AlbumRequestDto albumRequestDto) {
+    AlbumResponseDto add(AlbumRequestDto albumRequestDto) throws IOException {
         return albumRepository.add(albumRequestDto);
     }
 
@@ -26,8 +28,12 @@ class AlbumService {
                 .orElseThrow(() -> new EntityNotFoundException("There is no artist with such Id"));
     }
 
-    List<AlbumDetailsResponseDto> getByArtistId(Long id)
-    {
+    List<AlbumDetailsResponseDto> getByArtistId(Long id) {
         return albumRepository.getByArtistId(id);
+    }
+
+    public AlbumImageDto findImageByName(String name) {
+        return albumRepository.findImageByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("There is no image with such name"));
     }
 }

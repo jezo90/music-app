@@ -4,6 +4,7 @@ import com.music.artist.dao.ArtistEntity;
 import com.music.track.dao.TrackEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,7 +20,12 @@ public class AlbumEntity {
     private Long id;
     private String cdName;
     private Date releaseDate;
-    private String image;
+
+    private String imageName;
+    private String imageType;
+    @Lob
+    @Type(type = "org.hibernate.type.ImageType")
+    private byte[] image;
 
     @ManyToOne
     @JoinColumn(name = "artist_id")

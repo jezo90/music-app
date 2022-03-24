@@ -1,11 +1,13 @@
 package com.music.album;
 
 import com.music.album.dto.AlbumDetailsResponseDto;
+import com.music.album.dto.AlbumImageDto;
 import com.music.album.dto.AlbumRequestDto;
 import com.music.album.dto.AlbumResponseDto;
 import com.music.album.port.inbound.AlbumComponent;
 import lombok.RequiredArgsConstructor;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,7 +18,7 @@ class AlbumFacade implements AlbumComponent {
         return albumService.getAll();
     }
 
-    public AlbumResponseDto add(AlbumRequestDto albumRequestDto) {
+    public AlbumResponseDto add(AlbumRequestDto albumRequestDto) throws IOException {
         return albumService.add(albumRequestDto);
     }
 
@@ -28,6 +30,11 @@ class AlbumFacade implements AlbumComponent {
     @Override
     public List<AlbumDetailsResponseDto> getByArtistId(Long id) {
         return albumService.getByArtistId(id);
+    }
+
+    @Override
+    public AlbumImageDto findImageByName(String name) {
+        return albumService.findImageByName(name);
     }
 
 

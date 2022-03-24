@@ -1,5 +1,6 @@
 package com.music.artist.dao;
 
+import com.music.album.dto.AlbumImageDto;
 import com.music.album.dto.TrackDetailsDto;
 import com.music.artist.dto.ArtistImageDto;
 import com.music.artist.dto.ArtistRequestDto;
