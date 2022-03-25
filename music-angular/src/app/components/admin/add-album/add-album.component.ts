@@ -30,15 +30,8 @@ export class AddAlbumComponent implements OnInit {
   }
 
   addAlbum() {
-    this.albumService.addAlbum(this.albumRequest, this.file, this.artistId).subscribe(
-      data => {
-        this.dataToId(data);
-      });
-    this.router.navigate(['../artist/' + this.newAlbumId]).then();
-  }
-
-  dataToId(data: any) {
-    this.newAlbumId = data;
+    this.albumService.addAlbum(this.albumRequest, this.file, this.artistId);
+    this.router.navigate(['../artist/' + this.artistId]).then();
   }
 
 }
