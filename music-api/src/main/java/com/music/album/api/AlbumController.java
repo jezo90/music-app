@@ -9,12 +9,14 @@ import com.music.album.port.inbound.AlbumComponent;
 import com.music.artist.mapper.ArtistMapper;
 import com.music.artist.model.ArtistImage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +25,7 @@ import java.util.Locale;
 
 @RequiredArgsConstructor
 @RestController
+@Slf4j
 @CrossOrigin("*")
 @RequestMapping("/album")
 class AlbumController {
@@ -38,18 +41,18 @@ class AlbumController {
 
     @PostMapping("/add")
     ResponseEntity<Long> add(@RequestParam("file") MultipartFile file,
-                                      @RequestParam("cdName") String cdName,
-                                      @RequestParam("releaseDate") String releaseDate,
-                                      @RequestParam("artistId") Long artistId) throws ParseException, IOException {
+             @RequestParam("cdName") String cdName,
+             @RequestParam("releaseDate") String releaseDate,
+             @RequestParam("artistId") Long artistId, Principal user) throws ParseException, IOException {
+
+        log.info(user.getName());
 
         SimpleDateFormat formatter = new SimpleDateFormat("d.MM.yyyy", Locale.ENGLISH);
         Date date = formatter.parse(releaseDate);
 
         AlbumRequest albumRequest = new AlbumRequest(cdName,date, artistId, file);
 
-        return ResponseEntity.ok(
-                        albumComponent.add(
-                                AlbumMapper.map(albumRequest)));
+        return ResponseEntity.ok(albumComponent.add(AlbumMapper.map(albumRequest)));
     }
 
     @GetMapping("/{id}")
