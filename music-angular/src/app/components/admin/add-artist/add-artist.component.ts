@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class AddArtistComponent implements OnInit {
 
-  file: File = new File([],'');
+  file: File = new File([], '');
   newArtistId: number = 0;
 
   public artistRequest: ArtistRequest = new ArtistRequest('', '', '', new Date());
@@ -29,16 +29,15 @@ export class AddArtistComponent implements OnInit {
 
   addArtist() {
     this.artistService.addArtist(this.artistRequest, this.file).subscribe(
-      data =>
-      {
+      data => {
         this.dataToId(data);
-        this.router.navigate(['../artist/' + this.newArtistId.toString()]).then();
+        this.router.navigate(['../artist/' + this.newArtistId]).then();
       }
     );
+
   }
 
-  dataToId(data: any)
-  {
+  dataToId(data: any) {
     this.newArtistId = data;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AlbumRequest} from "../../../services/album/album-request/album-request";
 import {AlbumService} from "../../../services/album/album.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -12,12 +12,13 @@ export class AddAlbumComponent implements OnInit {
 
   artistId: number = 0;
   newAlbumId: number = 0;
-  file: File = new File([],'');
+  file: File = new File([], '');
   public albumRequest: AlbumRequest = new AlbumRequest('', new Date());
 
   constructor(private albumService: AlbumService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     // @ts-ignore
@@ -30,17 +31,13 @@ export class AddAlbumComponent implements OnInit {
 
   addAlbum() {
     this.albumService.addAlbum(this.albumRequest, this.file, this.artistId).subscribe(
-      data =>
-      {
+      data => {
         this.dataToId(data);
-        this.router.navigate(['../artist/' + this.newAlbumId]).then();
-        console.log(this.newAlbumId)
-      }
-    );
+      });
+    this.router.navigate(['../artist/' + this.newAlbumId]).then();
   }
 
-  dataToId(data: any)
-  {
+  dataToId(data: any) {
     this.newAlbumId = data;
   }
 
