@@ -30,8 +30,13 @@ export class AddAlbumComponent implements OnInit {
   }
 
   addAlbum() {
-    this.albumService.addAlbum(this.albumRequest, this.file, this.artistId);
-    this.router.navigate(['../artist/' + this.artistId]).then();
+    this.albumService.addAlbum(this.albumRequest, this.file, this.artistId).subscribe(
+      r =>
+      {
+        this.router.navigate(['../artist/' + this.artistId]).then();
+      }
+    );
+
   }
 
 }
