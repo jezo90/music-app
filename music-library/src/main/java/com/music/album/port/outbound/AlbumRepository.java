@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface AlbumRepository {
     List<AlbumResponseDto> getAll();
 
-    AlbumResponseDto add(AlbumRequestDto albumRequestDto) throws IOException;
+    Long add(AlbumRequestDto albumRequestDto) throws IOException;
 
     Optional<AlbumDetailsResponseDto> getOptional(Long id);
 

@@ -27,11 +27,10 @@ class AlbumAdapter implements AlbumRepository {
 
     @Override
     @Transactional
-    public AlbumResponseDto add(AlbumRequestDto albumRequestDto) throws IOException {
-        return AlbumEntityMapper.map(
-                albumSpringRepository.saveAndFlush(
-                        AlbumEntityMapper
-                                .map(albumRequestDto)));
+    public Long add(AlbumRequestDto albumRequestDto) throws IOException {
+        AlbumEntity albumEntity = albumSpringRepository.saveAndFlush(AlbumEntityMapper.map(albumRequestDto));
+
+        return albumEntity.getId();
     }
 
     @Override

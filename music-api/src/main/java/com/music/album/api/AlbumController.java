@@ -37,7 +37,7 @@ class AlbumController {
     }
 
     @PostMapping("/add")
-    ResponseEntity<AlbumResponse> add(@RequestParam("file") MultipartFile file,
+    ResponseEntity<Long> add(@RequestParam("file") MultipartFile file,
                                       @RequestParam("cdName") String cdName,
                                       @RequestParam("releaseDate") String releaseDate,
                                       @RequestParam("artistId") Long artistId) throws ParseException, IOException {
@@ -48,9 +48,8 @@ class AlbumController {
         AlbumRequest albumRequest = new AlbumRequest(cdName,date, artistId, file);
 
         return ResponseEntity.ok(
-                AlbumMapper.map(
                         albumComponent.add(
-                                AlbumMapper.map(albumRequest))));
+                                AlbumMapper.map(albumRequest)));
     }
 
     @GetMapping("/{id}")
