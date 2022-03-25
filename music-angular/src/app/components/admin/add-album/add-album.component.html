@@ -3,16 +3,13 @@
   <form>
     <h1 class="h3 mb-3 fw-normal">Add artist</h1>
 
-    <input type="text" class="form-control" [(ngModel)]="albumRequest.nickname" name="username" placeholder="Nickname">
-    <input type="text" class="form-control" [(ngModel)]="albumRequest.firstName" name="firstName" placeholder="First name">
-    <input type="text" class="form-control" [(ngModel)]="albumRequest.lastName" name="lastName" placeholder="Last name">
-    <input type="date" class="form-control" [(ngModel)]="albumRequest.birthDate" name="birthDate" placeholder="Birth date">
+    <input type="text" class="form-control" [(ngModel)]="albumRequest.cdName" name="username" placeholder="Nickname">
+    <input type="date" class="form-control" [(ngModel)]="albumRequest.releaseDate" name="birthDate" placeholder="Birth date">
     <label>Choose Image:</label>
     <input type="file" id="formFile" class="form-control" name="image" placeholder="Image"
            (change)="this.onFileChange($event)" >
-    <button type="button" class="w-100 btn btn-secondary my-3">Upload file</button>
 
-    <button class="w-100 btn btn-lg btn-dark" type="submit" (click)="this.addArtist()">Add Artist</button>
+    <button class="w-100 btn btn-lg btn-dark" type="submit" (click)="this.addAlbum()">Add Album</button>
   </form>
 
 </div>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ArtistRequest} from "../../../services/artist/artist-request/artist-request";
 import {ArtistService} from "../../../services/artist/artist.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-artist',
@@ -14,14 +15,15 @@ export class AddArtistComponent implements OnInit {
 
   public artistRequest: ArtistRequest = new ArtistRequest('', '', '', new Date());
 
-  constructor(private artistService: ArtistService) {
+  constructor(private artistService: ArtistService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
   onFileChange(event: any) {
-    console.log(event.target.files[0]);
     this.file = event.target.files[0];
   }
 
@@ -30,7 +32,7 @@ export class AddArtistComponent implements OnInit {
       data =>
       {
         this.dataToId(data);
-        console.log(this.newArtistId)
+        this.router.navigate(['../artist/' + this.newArtistId.toString()]).then();
       }
     );
   }
