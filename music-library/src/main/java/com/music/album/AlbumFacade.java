@@ -18,7 +18,7 @@ class AlbumFacade implements AlbumComponent {
         return albumService.getAll();
     }
 
-    public Long add(AlbumRequestDto albumRequestDto) throws IOException {
+    public Long add(AlbumRequestDto albumRequestDto) {
         return albumService.add(albumRequestDto);
     }
 

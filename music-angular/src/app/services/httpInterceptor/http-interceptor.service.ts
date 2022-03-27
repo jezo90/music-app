@@ -7,13 +7,23 @@ import {catchError, Observable, throwError} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class HttpInterceptorService implements HttpInterceptor{
+export class HttpInterceptorService implements HttpInterceptor {
 
-  constructor(private token: TokenStorageService) { }
+  constructor(private token: TokenStorageService) {
+  }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>>  {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let authReq = request;
     const token = this.token.getToken();
-    return next.handle(request).pipe(catchError(err => {
+    if (token != null) {
+      authReq = request.clone({
+          setHeaders: {
+            Authorization: 'Bearer ' + token,
+            'Content-Type': 'application/json'
+          }
+        });
+    }
+    return next.handle(authReq).pipe(catchError(err => {
       if (err.status === 401) {
 
         // auto logout if 401 response returned from api
@@ -25,5 +35,6 @@ export class HttpInterceptorService implements HttpInterceptor{
       const error = err.error.message || err.statusText;
       return throwError(error);
     }))
+
   }
 }

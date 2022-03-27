@@ -3,6 +3,7 @@ package com.music.album.dao;
 import com.music.album.dto.*;
 import com.music.artist.dao.ArtistEntity;
 import com.music.artist.dto.ArtistImageDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class AlbumEntityMapper {
     public static AlbumResponseDto map(AlbumEntity albumEntity) {
         return new AlbumResponseDto(
@@ -27,7 +29,7 @@ public class AlbumEntityMapper {
                 .collect(Collectors.toList());
     }
 
-    public static AlbumEntity map(AlbumRequestDto albumRequestDto) throws IOException {
+    public static AlbumEntity map(AlbumRequestDto albumRequestDto){
         AlbumEntity albumEntity = new AlbumEntity();
         albumEntity.setCdName(albumRequestDto.cdName());
         albumEntity.setReleaseDate(albumRequestDto.releaseDate());
@@ -43,9 +45,15 @@ public class AlbumEntityMapper {
         albumEntity.setImageType(
                 albumRequestDto.image()
                         .getContentType());
-        albumEntity.setImage(albumRequestDto
-                .image()
-                .getBytes());
+        try {
+            albumEntity.setImage(albumRequestDto
+                    .image()
+                    .getBytes());
+        }
+        catch (Exception ex)
+        {
+            log.info("Image is not valid");
+        }
 
 
         return albumEntity;

@@ -27,7 +27,7 @@ class AlbumAdapter implements AlbumRepository {
 
     @Override
     @Transactional
-    public Long add(AlbumRequestDto albumRequestDto) throws IOException {
+    public Long add(AlbumRequestDto albumRequestDto) {
         AlbumEntity albumEntity = albumSpringRepository.saveAndFlush(AlbumEntityMapper.map(albumRequestDto));
 
         return albumEntity.getId();
@@ -56,6 +56,7 @@ class AlbumAdapter implements AlbumRepository {
     public Optional<AlbumImageDto> findImageByName(String name) {
         return albumSpringRepository
                 .findAlbumEntitiesByImageName(name)
+                .stream().findFirst()
                 .map(AlbumEntityMapper::mapToImageDto);
     }
 

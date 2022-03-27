@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AlbumRequest} from "../../../services/album/album-request/album-request";
 import {AlbumService} from "../../../services/album/album.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {TokenStorageService} from "../../../services/tokenStorage/token-storage.service";
 
 @Component({
   selector: 'app-add-album',
@@ -11,13 +12,13 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class AddAlbumComponent implements OnInit {
 
   artistId: number = 0;
-  newAlbumId: number = 0;
   file: File = new File([], '');
   public albumRequest: AlbumRequest = new AlbumRequest('', new Date());
 
   constructor(private albumService: AlbumService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private tokenService: TokenStorageService) {
   }
 
   ngOnInit(): void {

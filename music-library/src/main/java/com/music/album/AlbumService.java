@@ -19,7 +19,7 @@ class AlbumService {
         return albumRepository.getAll();
     }
 
-    Long add(AlbumRequestDto albumRequestDto) throws IOException {
+    Long add(AlbumRequestDto albumRequestDto){
         return albumRepository.add(albumRequestDto);
     }
 

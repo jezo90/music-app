@@ -9,6 +9,7 @@ import com.music.album.port.inbound.AlbumComponent;
 import com.music.artist.mapper.ArtistMapper;
 import com.music.artist.model.ArtistImage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 @RequiredArgsConstructor
+@Slf4j
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/album")
@@ -40,10 +42,17 @@ class AlbumController {
     ResponseEntity<Long> add(@RequestParam("file") MultipartFile file,
                                       @RequestParam("cdName") String cdName,
                                       @RequestParam("releaseDate") String releaseDate,
-                                      @RequestParam("artistId") Long artistId) throws ParseException, IOException {
+                                      @RequestParam("artistId") Long artistId) {
 
         SimpleDateFormat formatter = new SimpleDateFormat("d.MM.yyyy", Locale.ENGLISH);
-        Date date = formatter.parse(releaseDate);
+        Date date = new Date();
+
+        try{
+            date = formatter.parse(releaseDate);
+        }
+        catch(Exception exception) {
+            log.info("Date is not valid");
+        }
 
         AlbumRequest albumRequest = new AlbumRequest(cdName,date, artistId, file);
 

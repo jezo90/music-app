@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface AlbumComponent {
     List<AlbumResponseDto> getAll();
-    Long add(AlbumRequestDto albumRequestDto) throws IOException;
+    Long add(AlbumRequestDto albumRequestDto);
     AlbumDetailsResponseDto get(Long id);
     List<AlbumDetailsResponseDto> getByArtistId(Long id);
     AlbumImageDto findImageByName(String name);
