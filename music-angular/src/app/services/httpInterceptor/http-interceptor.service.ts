@@ -23,6 +23,13 @@ export class HttpInterceptorService implements HttpInterceptor {
           }
         });
     }
+    const blacklist = '/products/imageUpload';
+    if (request.url.includes(blacklist)) {
+      authReq = request.clone({setHeaders: {
+          Authorization: 'Bearer ' + token
+        }
+      });
+    }
     return next.handle(authReq).pipe(catchError(err => {
       if (err.status === 401) {
 

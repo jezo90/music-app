@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Artist} from "../../services/artist/artist";
 import {AlbumService} from "../../services/album/album.service";
 import {Album} from "../../services/album/album";
+import {TokenStorageService} from "../../services/tokenStorage/token-storage.service";
 
 @Component({
   selector: 'app-artist-details',
@@ -21,7 +22,8 @@ export class ArtistDetailsComponent implements OnInit {
   constructor(private artistService: ArtistService,
               private albumService: AlbumService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private tokenService: TokenStorageService) {
   }
 
   ngOnInit(): void {
@@ -71,6 +73,16 @@ export class ArtistDetailsComponent implements OnInit {
           numberOfWords
         }
       }).then(r => r);
+  }
+
+  public isLogged()
+  {
+    return this.tokenService.isLogged;
+  }
+
+  public getRoles()
+  {
+    return this.tokenService.getRoles();
   }
 
 }

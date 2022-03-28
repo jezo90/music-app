@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface AlbumSpringRepository extends JpaRepository<AlbumEntity, Long> {
     List<AlbumEntity> findAlbumEntitiesByArtistEntity_Id(Long id);
-    Optional<AlbumEntity> findAlbumEntitiesByImageName(String name);
+    List<AlbumEntity> findAlbumEntitiesByImageName(String name);
 }

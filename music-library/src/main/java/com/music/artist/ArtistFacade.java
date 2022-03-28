@@ -6,7 +6,6 @@ import com.music.artist.dto.ArtistResponseDto;
 import com.music.artist.port.inbound.ArtistComponent;
 import lombok.RequiredArgsConstructor;
 
-import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,7 +23,7 @@ class ArtistFacade implements ArtistComponent {
     }
 
     @Override
-    public ArtistResponseDto add(ArtistRequestDto artistRequestDto) throws IOException {
+    public Long add(ArtistRequestDto artistRequestDto) {
         return artistService.add(artistRequestDto);
     }
 

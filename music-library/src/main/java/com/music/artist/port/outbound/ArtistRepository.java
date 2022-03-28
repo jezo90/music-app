@@ -14,7 +14,7 @@ public interface ArtistRepository {
 
     Optional<ArtistResponseDto> getOptional(Long id);
 
-    ArtistResponseDto add(ArtistRequestDto artistRequestDto) throws IOException;
+    Long add(ArtistRequestDto artistRequestDto);
 
     List<TrackDetailsDto> getArtistTrackList(Long id);
 

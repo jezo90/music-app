@@ -6,17 +6,24 @@
     </div>
 
     <div class="col m-5">
-      <h1> <b> {{this.artist.nickname.toUpperCase()}}  </b> </h1>
+      <h1><b> {{this.artist.nickname.toUpperCase()}}  </b></h1>
       <h4> {{this.artist.firstName}} {{this.artist.lastName}} </h4>
       <div class="my-3">
         {{this.convertToDate(this.artist.birthDate) | date:'longDate'}}
       </div>
-      <p>Guess the song with:</p>
-      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(0 , this.artist.id, 5)">5 words</button>
-      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(0 , this.artist.id, 10)">10 words</button>
-      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(0 , this.artist.id, 15)">15 words</button>
+      <div *ngIf="isLogged()">
+        <p>Guess the song with:</p>
+        <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(0 , this.artist.id, 5)">
+          5 words
+        </button>
+        <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(0 , this.artist.id, 10)">
+          10 words
+        </button>
+        <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(0 , this.artist.id, 15)">
+          15 words
+        </button>
+      </div>
     </div>
-
   </div>
 
   <div class="row">
@@ -25,27 +32,37 @@
         <b>
           ALBUMS:
         </b>
+        <p *ngIf="isLogged() && getRoles()=='ADMIN'">
+          <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" routerLink="../admin/addAlbum/{{this.artist.id}}">
+            Add Album
+          </button>
+        </p>
       </h1>
     </div>
   </div>
 
   <div class="row mt-5" *ngFor="let tempAlbum of this.albums">
-
     <div class="col-md-auto">
       <img class="img" src="http://localhost:9192/album/image/{{tempAlbum.image}}">
     </div>
 
     <div class="col m-5">
-      <h1> <b> {{this.tempAlbum.cdName.toUpperCase()}}  </b> </h1>
+      <h1><b> {{this.tempAlbum.cdName.toUpperCase()}}  </b></h1>
       <h4> {{this.convertToDate(this.tempAlbum.releaseDate) | date:'longDate'}} </h4><br/>
-      <p>Guess the song with:</p>
-      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(tempAlbum.id , 0, 5)">5 words</button>
-      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(tempAlbum.id , 0, 10)">10 words</button>
-      <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(tempAlbum.id , 0, 15)">15 words</button>
+      <div *ngIf="isLogged()">
+        <p>Guess the song with:</p>
+        <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(tempAlbum.id , 0, 5)">
+          5 words
+        </button>
+        <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(tempAlbum.id , 0, 10)">
+          10 words
+        </button>
+        <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" (click)="createQuiz(tempAlbum.id , 0, 15)">
+          15 words
+        </button>
+      </div>
     </div>
-
   </div>
-
 
 </div>
 

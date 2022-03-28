@@ -55,8 +55,7 @@ class AlbumAdapter implements AlbumRepository {
     @Override
     public Optional<AlbumImageDto> findImageByName(String name) {
         return albumSpringRepository
-                .findAlbumEntitiesByImageName(name)
-                .stream().findFirst()
+                .findAlbumEntitiesByImageName(name).stream().findFirst()
                 .map(AlbumEntityMapper::mapToImageDto);
     }
 

@@ -22,7 +22,7 @@ export class TokenStorageService {
   signOut() {
     window.sessionStorage.clear();
     this.isLogged = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then();
   }
 
   public signIn(token: Token) {

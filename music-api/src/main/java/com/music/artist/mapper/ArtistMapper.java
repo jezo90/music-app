@@ -33,7 +33,7 @@ public class ArtistMapper {
     }
 
 
-    public static ArtistRequestDto map(ArtistRequest artistRequest, MultipartFile file) throws IOException {
+    public static ArtistRequestDto map(ArtistRequest artistRequest, MultipartFile file){
         return new ArtistRequestDto(
                 artistRequest.nickname(),
                 artistRequest.firstName(),

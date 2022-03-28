@@ -37,12 +37,12 @@ class ArtistAdapter implements ArtistRepository {
     }
 
     @Override
-    public ArtistResponseDto add(ArtistRequestDto artistRequestDto) throws IOException {
+    public Long add(ArtistRequestDto artistRequestDto){
 
-        return ArtistEntityMapper.map(
-                artistSpringRepository
-                        .save(ArtistEntityMapper
-                                      .map(artistRequestDto)));
+       ArtistEntity artistEntity = artistSpringRepository.saveAndFlush(
+                                    ArtistEntityMapper.map(artistRequestDto));
+
+        return artistEntity.getId();
     }
 
     @Override
@@ -63,7 +63,7 @@ class ArtistAdapter implements ArtistRepository {
     @Override
     public Optional<ArtistImageDto> findImageByName(String name) {
         return artistSpringRepository
-                .findArtistEntitiesByImageName(name)
+                .findArtistEntitiesByImageName(name).stream().findFirst()
                 .map(ArtistEntityMapper::mapToImageDto);
     }
 }
