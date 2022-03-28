@@ -16,7 +16,7 @@ export class ArtistDetailsComponent implements OnInit {
   private artistId: number = 0;
   private newDate: Date | undefined;
   public quizId: string = "";
-  public artist: Artist = new Artist(0, '', '', '', 0, 'default.jpg');
+  public artist: Artist = new Artist(0, '', '', '', 0, '');
   public albums: Array<Album> = [];
 
   constructor(private artistService: ArtistService,

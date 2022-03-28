@@ -42,11 +42,13 @@ class UserController {
 
         return ResponseEntity.ok(
                 new UserToken(
-                        jwtUtil.generateJwtToken(authentication),
-                        userEntity.getId(),
-                        userEntity.getUsername(),
-                        userEntity.getEmail(),
-                        userEntity.getRoles()));
+                jwtUtil.generateJwtToken(authentication),
+                userEntity.getId(),
+                userEntity.getUsername(),
+                userEntity.getEmail(),
+                userEntity.getRoles()
+                        .stream().map(RoleEntity::getRoleName)
+                        .map(Enum::toString).toList()));
     }
 
     @PostMapping("/register")

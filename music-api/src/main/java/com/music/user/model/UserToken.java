@@ -9,5 +9,5 @@ public record UserToken(
         Long userId,
         String username,
         String email,
-        List<RoleEntity> roles) {
+        List<String> roles) {
 }

@@ -32,8 +32,8 @@
         <b>
           ALBUMS:
         </b>
-        <p *ngIf="isLogged() && getRoles()=='ADMIN'">
-          <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" routerLink="../admin/addAlbum/{{this.artist.id}}">
+        <p *ngIf="isLogged() && getRoles()=='ROLE_ADMIN'">
+          <button type="button" class="btn btn-dark me-2 mb-1 buttonWords" routerLink="../../admin/addAlbum/{{this.artist.id}}">
             Add Album
           </button>
         </p>
